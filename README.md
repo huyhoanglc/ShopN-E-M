@@ -10,7 +10,7 @@
 - [![Hoàng Gia Huy](https://img.shields.io/badge/GitHub-Hoàng%20Gia%20Huy-181717?style=flat&logo=github)](https://github.com/huyhoanglc)
 - [![Nguyễn Anh Minh](https://img.shields.io/badge/GitHub-Nguyễn%20Anh%20Minh-181717?style=flat&logo=github)](https://github.com/nguyenanhminh)
 - [![Nguyễn Trần Hoàng Long](https://img.shields.io/badge/GitHub-Nguyễn%20Trần%20Hoàng%20Long-181717?style=flat&logo=github)](https://github.com/HoangLong510)
-- [![Nguyễn Anh Quân](https://img.shields.io/badge/GitHub-Nguyễn%20Anh%20Quân-181717?style=flat&logo=github)](https://github.com/nguyenanhquan)
+- [![Nguyễn Anh Quân](https://img.shields.io/badge/GitHub-Nguyễn%20Anh%20Quân-181717?style=flat&logo=github)](https://github.com/aq0811)
 - [![Trần Nhật Linh](https://img.shields.io/badge/GitHub-Trần%20Nhật%20Linh-181717?style=flat&logo=github)](https://github.com/trannhatlinh)
 
 
