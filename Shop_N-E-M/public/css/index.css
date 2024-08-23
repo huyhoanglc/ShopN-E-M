@@ -1,0 +1,48 @@
+.main {
+    background-color: #e6e6e6;
+    width: 100%;
+    height: calc(100vh - 60px);
+    overflow: auto;
+}
+
+.content {
+    padding: 20px;
+    width: 100%;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border: 1px solid #000 !important;
+}
+
+select.decorated option:hover {
+    box-shadow: 0 0 10px 100px #ffffff inset !important;
+}
+
+.pagination .page-link {
+    background-color: #fff;
+    color: #000;
+    border-color: #000;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #000;
+    border-color: #000;
+    color: #fff;
+}
+
+.pagination .page-link:hover {
+    background-color: #d8d8d8;
+    color: #000;
+    border-color: #000;
+}
+
+.page-link-disable, .page-link-disable:hover{
+    user-select: none !important;
+    background-color: #eee !important;
+}
+
+.modal {
+    user-select: none;
+}
