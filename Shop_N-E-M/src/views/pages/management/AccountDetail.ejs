@@ -1,0 +1,154 @@
+<div style="display: flex; user-select: none; width: 100%; font-weight: bold; justify-content: space-between; align-items: center;">
+    <span>
+        ACCOUNT DETAIL
+    </span>
+    <a class="btn" href="/management/account">
+        View all account
+    </a>
+</div>
+
+<form action="/management/account/update/<%= user?._id %>"
+    method="post"
+    style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+    <div class="mb-3 mt-3" style="width: 100%; user-select: none;">
+        <label for="username" class="form-label" style="font-weight: bold; font-size: 14px;">
+            Username:
+        </label>
+        <input type="text" style="background-color: #dcdcdc;"
+            class="form-control"
+            id="username"
+            name="username"
+            autocomplete="off"
+            readonly
+            value="<%= user?.username %>">
+    </div>
+    <div class="mb-3 mt-3" style="width: 100%; user-select: none;">
+        <label for="email" class="form-label" style="font-weight: bold; font-size: 14px;">
+            Email:
+        </label>
+        <input type="text" style="background-color: #dcdcdc;"
+            class="form-control"
+            id="email"
+            name="email"
+            autocomplete="off"
+            readonly
+            value="<%= user?.email %>">
+    </div>
+    <div class="mb-3 mt-3" style="width: 100%; user-select: none;">
+        <label for="phone" class="form-label" style="font-weight: bold; font-size: 14px;">
+            Phone:
+        </label>
+        <input type="number" style="background-color: #dcdcdc;"
+            class="form-control"
+            id="phone"
+            name="phone"
+            autocomplete="off"
+            readonly
+            value="<%= user?.phone %>">
+    </div>
+    <div class="mb-3 mt-3" style="width: 100%; user-select: none;">
+        <label for="role" class="form-label" style="font-weight: bold; font-size: 14px;">
+            Role:
+        </label>
+        <select
+            class="form-select"
+            id="role"
+            name="role">
+            <option value="admin" <%= user?.role === 'user' ? 'selected' : '' %>>
+                Admin
+            </option>
+            <option value="user" <%= user?.role === 'user' ? 'selected' : '' %>>
+                User
+            </option>
+        </select>
+    </div>
+    <div class="mb-3 mt-3" style="width: 100%; user-select: none;">
+        <label for="createdAt" class="form-label" style="font-weight: bold; font-size: 14px;">
+            CreatedAt:
+        </label>
+        <input type="text" style="background-color: #dcdcdc;"
+            class="form-control"
+            id="createdAt"
+            name="createdAt"
+            autocomplete="off"
+            readonly
+            value="<%= user?.createdAt %>">
+    </div>
+    <div class="mb-5 mt-3" style="width: 100%; user-select: none;">
+        <label for="updatedAt" class="form-label" style="font-weight: bold; font-size: 14px;">
+            UpdatedAt:
+        </label>
+        <input type="text" style="background-color: #dcdcdc;"
+            class="form-control"
+            id="updatedAt"
+            name="updatedAt"
+            autocomplete="off"
+            readonly
+            value="<%= user?.updatedAt %>">
+    </div>
+    <button type="submit" class="btn btn-dark mb-3" style="width: 100%;">
+        Update
+    </button>
+    <a class="btn btn-danger mb-2" style="width: 100%;" data-bs-toggle="modal" data-bs-target="#modalDelete">
+        Delete account
+    </a>
+</form>
+
+<!-- modal delete -->
+<div class="modal" id="modalDelete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+  
+        <div class="modal-header">
+            <h4 class="modal-title">Delete account</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <div class="modal-body">
+            Are you sure you want to delete this account?
+        </div>
+  
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
+            <a class="btn btn-dark" href="/management/account/delete/<%= user?._id %>">
+                Argee
+            </a>
+        </div>
+  
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var myModal = new bootstrap.Modal(document.getElementById('modalError'))
+        myModal.show()
+    })
+</script>
+<% if(errors && errors.length > 0) { %>
+<div class="modal" id="modalError">
+    <div class="modal-dialog">
+        <div class="modal-content">
+  
+        <div class="modal-header bg-dark" style="color: #fff; display: flex; justify-content: space-between;">
+            <h4 class="modal-title">ERROR</h4>
+            <a class="btn" data-bs-dismiss="modal">
+                <i class="bi bi-x-lg" style="color: #fff; font-size: 20px;"></i>
+            </a>
+        </div>
+  
+        <div class="modal-body" style="
+            display: flex;
+            flex-direction: column;
+            min-height: 150px;
+            justify-content: center;"
+        ">
+            <% errors.map(item => { %>
+                <p><%= item %></p>
+            <% }) %>
+        </div>
+  
+        </div>
+    </div>
+</div>
+<% } %>

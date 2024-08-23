@@ -1,0 +1,94 @@
+<div style="display: flex; user-select: none; width: 100%; padding-bottom: 20px; font-weight: bold; justify-content: space-between; align-items: center;">
+  <span>
+    CATEGORY MANAGEMENT
+  </span>
+  <a class="btn" href="/management/category/create">
+    Add new category
+  </a>
+</div>
+<form action="/management/category" method="post" style="width: 100%; padding: 20px; display: flex; gap: 5px; background-color: #ebebeb; border-radius: 10px;">
+  <input type="text" class="form-control" id="searchValue" placeholder="Enter category name..." name="searchValue" autocomplete="off" value="<%= searchValue %>">
+  <button type="submit" class="btn btn-dark">
+    Search
+  </button>
+</form>
+<div style="height: 5px;"></div>
+<table class="table table-hover" style="text-align: center; user-select: none;">
+  <thead>
+    <tr>
+      <th style="text-align: left;">Name</th>
+      <th>Image</th>
+      <th style="text-align: right;">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% categorys.forEach(category=> { %>
+    <tr>
+      <td style="text-align: left;">
+        <%= category.name %>
+      </td>
+      <td>
+        <img src="/upload/<%= category.image %>" alt="<%= category.name %>" width="" height="80px">
+      </td>
+      <td style="text-align: right;">
+        <a class="btn btn-success" href="/management/category/<%= category._id %>">
+          <i class="bi bi-pencil-square"></i>
+        </a>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<% if(categorys.length > 0 && !searchValue) { %>
+<ul class="mt-4 pagination justify-content-end" style="width: 100%;">
+  <% if (current > 1) { %>
+  <li class="page-item">
+    <a class="page-link" href="/management/category?page=<%= current - 1 %>">
+      Back
+    </a>
+  </li>
+  <% } %>
+  <% if (current == 1) { %>
+  <li class="page-item">
+    <span class="page-link page-link-disable">
+      Back
+    </span>
+  </li>
+  <% } %>
+
+  <% 
+            let startPage = current - 1;
+            let endPage = current + 1;
+    
+            if (startPage < 1) {
+                startPage = 1;
+                endPage = Math.min(3, pages);
+            } else if (endPage > pages) {
+                endPage = pages;
+                startPage = Math.max(pages - 2, 1);
+            }
+    
+            for (let i = startPage; i <= endPage; i++) { 
+        %>
+  <li class="page-item <%= current === i? 'active' : '' %>">
+    <a class="page-link" href="/management/category?page=<%= i %>"><%= i %></a>
+  </li>
+  <% } %>
+
+  <% if (current < pages) { %>
+  <li class="page-item">
+    <a class="page-link" href="/management/category?page=<%= current + 1 %>">
+      Next
+    </a>
+  </li>
+  <% } %>
+  <% if (current == pages) { %>
+  <li class="page-item">
+    <span class="page-link page-link-disable">
+      Next
+    </span>
+  </li>
+  <% } %>
+</ul>
+<% } %>

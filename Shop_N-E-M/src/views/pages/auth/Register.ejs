@@ -1,0 +1,65 @@
+<div style="
+                    display: flex;
+                    justify-content: center;
+                    width: 100%;">
+    <div style="
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        max-width: 600px;
+                        padding: 20px;
+                        background-color: #fff;
+                        border-radius: 10px;
+                        align-items: center;">
+        <span style="font-size: 20px; font-weight: bold; text-align: center; user-select: none;">
+            Register
+        </span>
+        <span style="font-size: 15px; text-align: center; color: #555; user-select: none;">
+            Register to shop and track orders save favorite product lists and receive many offers
+        </span>
+        <form action="/auth/register" method="post" style="
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            padding: 10px 0px;
+                            gap: 10px;">
+            <div class="mb-3 mt-3" style="width: 100%;">
+                <label for="username" class="form-label">
+                    Username:
+                    <span style="color: red;">
+                        <%= errors?.username && " * " + errors?.username %>
+                    </span>
+                </label>
+                <input type="text" class="form-control" id="username" name="username" value="<%= data?.username %>" autocomplete="off">
+            </div>
+            <div class="mb-3" style="width: 100%;">
+                <label for="password" class="form-label">
+                    Password:
+                    <span style="color: red;">
+                        <%= errors?.password && " * " + errors?.password %>
+                    </span>
+                </label>
+                <input type="password" class="form-control" id="password" name="password" autocomplete="off">
+            </div>
+            <div class="mb-3" style="width: 100%;">
+                <label for="confirmPassword" class="form-label">
+                    Confirm password:
+                    <span style="color: red;">
+                        <%= errors?.confirmPassword && " * " + errors?.confirmPassword %>
+                    </span>
+                </label>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" autocomplete="off">
+            </div>
+            <button type="submit" class="btn btn-dark" style="width: 100%;">
+                CREATE ACCOUNT
+            </button>
+        </form>
+        <div style="color: #555; user-select: none;">
+            By clicking on
+            <span style="color: #000; font-weight: bold;"> Create account </span>
+            you agree to
+            <span style="color: #000; font-weight: bold;"> Our Terms of Service </span>
+        </div>
+    </div>
+</div>

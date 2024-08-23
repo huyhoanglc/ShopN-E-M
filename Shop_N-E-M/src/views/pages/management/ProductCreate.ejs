@@ -1,0 +1,140 @@
+<div style="display: flex; user-select: none; width: 100%; font-weight: bold; justify-content: space-between; align-items: center;">
+    <span>
+        CREATE PRODUCT
+    </span>
+    <a class="btn" href="/management/product">
+        View all product
+    </a>
+</div>
+
+<form action="/management/product/create" enctype="multipart/form-data"
+    method="post"
+    style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+    <div class="mb-1 mt-3" style="width: 100%; user-select: none;">
+        <label for="name" class="form-label" style="font-weight: bold; font-size: 14px;">
+            Name: <span style="color: red;">*</span>
+        </label>
+        <input type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            autocomplete="off"
+            value="<%= data?.name %>">
+    </div>
+
+    <div class="mb-1 mt-3" style="width: 100%; user-select: none;">
+        <label for="brand" class="form-label" style="font-weight: bold; font-size: 14px;">
+            Brand: <span style="color: red;">*</span>
+        </label>
+        <select
+            class="form-select"
+            id="brand"
+            name="brand">
+            <option value="">--- Choose brand ---</option>
+            <% brands.forEach(brand => { %>
+                <option value="<%= brand._id %>" <%= data?.brand === brand?._id ? 'selected' : '' %>>
+                    <%= brand.name %>
+                </option>
+            <% }) %>
+        </select>
+    </div>
+
+    <div class="mb-1 mt-3" style="width: 100%; user-select: none;">
+        <label for="price" class="form-label" style="font-weight: bold; font-size: 14px;">
+            Price:
+        </label>
+        <input type="number"
+            class="form-control"
+            id="price"
+            name="price"
+            autocomplete="off"
+            value="<%= data?.price %>">
+    </div>
+
+    <div class="mb-1 mt-3" style="width: 100%; user-select: none;">
+        <label for="quantity" class="form-label" style="font-weight: bold; font-size: 14px;">
+            Quantity:
+        </label>
+        <input type="number"
+            class="form-control"
+            id="quantity"
+            name="quantity"
+            autocomplete="off"
+            value="<%= data?.quantity %>">
+    </div>
+
+    <div class="mb-1 mt-3" style="width: 100%; user-select: none;">
+        <label for="category" class="form-label" style="font-weight: bold; font-size: 14px;">
+            Category: <span style="color: red;">*</span>
+        </label>
+        <select
+            class="form-select"
+            id="category"
+            name="category">
+            <option value="">--- Choose category ---</option>
+            <% categorys.forEach(category => { %>
+                <option value="<%= category._id %>" <%= data?.category === category?._id ? 'selected' : '' %>>
+                    <%= category.name %>
+                </option>
+            <% }) %>
+        </select>
+    </div>
+
+    <div class="mb-1 mt-3" style="width: 100%; user-select: none;">
+        <label for="image" class="form-label" style="font-weight: bold; font-size: 14px;">
+            Image: <span style="color: red;">*</span>
+        </label>
+        <input type="file"
+            class="form-control"
+            id="image"
+            name="image"
+            multiple="false"
+            value="<%= data?.image %>">
+    </div>
+
+    <div class="mb-4 mt-3" style="width: 100%; user-select: none;">
+        <label for="description" class="form-label" style="font-weight: bold; font-size: 14px;">
+            Description: <span style="color: red;">*</span>
+        </label>
+        <textarea type="text"
+            class="form-control"
+            id="description"
+            name="description"
+            autocomplete="off"
+            rows="5"><%= data?.description %></textarea>
+    </div>
+    
+    <button type="submit" class="btn btn-dark mb-3" style="width: 100%;">
+        Create
+    </button>
+</form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var myModal = new bootstrap.Modal(document.getElementById('modalError'))
+        myModal.show()
+    })
+</script>
+<% if(errors) { %>
+<div class="modal" id="modalError">
+    <div class="modal-dialog">
+        <div class="modal-content">
+  
+        <div class="modal-header bg-dark" style="color: #fff; display: flex; justify-content: space-between;">
+            <h4 class="modal-title">ERROR</h4>
+            <a class="btn" data-bs-dismiss="modal">
+                <i class="bi bi-x-lg" style="color: #fff; font-size: 20px;"></i>
+            </a>
+        </div>
+  
+        <div class="modal-body" style="display: flex;
+            flex-direction: column;
+            min-height: 150px;
+            justify-content: center;">
+            - <%= errors %>
+        </div>
+  
+        </div>
+    </div>
+</div>
+<% } %>

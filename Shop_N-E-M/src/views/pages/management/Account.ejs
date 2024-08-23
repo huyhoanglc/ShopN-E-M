@@ -1,0 +1,108 @@
+<div style="display: flex;
+    user-select: none;
+    width: 100%;
+    padding-top: 7px;
+    padding-bottom: 25px;
+    font-weight: bold;
+    justify-content:
+    space-between;
+    align-items:
+    center;">
+    <span>
+        ACCOUNT MANAGEMENT
+    </span>
+</div>
+<form action="/management/account"
+    method="post"
+    style="width: 100%; padding: 20px; display: flex; gap: 5px; background-color: #ebebeb; border-radius: 10px;">
+    <input type="text"
+        class="form-control"
+        id="searchValue"
+        placeholder="Enter username..."
+        name="searchValue"
+        autocomplete="off"
+        value="<%= searchValue %>">
+    <button type="submit" class="btn btn-dark">
+        Search
+    </button>
+</form>
+<div style="height: 5px;"></div>
+<table class="table table-hover" style="text-align: center; user-select: none;">
+    <thead>
+        <tr>
+            <th style="text-align: left;">Username</th>
+            <th>Role</th>
+            <th style="text-align: right;">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% users.forEach(user=> { %>
+            <tr>
+                <td style="text-align: left;">
+                    <%= user.username %>
+                </td>
+                <td style="text-transform: capitalize;">
+                    <%= user.role %>
+                </td>
+                <td style="text-align: right;">
+                    <a class="btn btn-success" href="/management/account/<%= user._id %>">
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+                </td>
+            </tr>
+            <% }) %>
+    </tbody>
+</table>
+
+<% if(users.length > 0 && !searchValue) { %>
+<ul class="mt-4 pagination justify-content-end" style="width: 100%;">
+    <% if (current > 1) { %>
+        <li class="page-item">
+            <a class="page-link" href="/management/account?page=<%= current - 1 %>">
+                Back
+            </a>
+        </li>
+    <% } %>
+    <% if (current === 1) { %>
+        <li class="page-item">
+            <span class="page-link page-link-disable">
+                Back
+            </span>
+        </li>
+    <% } %>
+
+    <% 
+        let startPage = current - 1;
+        let endPage = current + 1;
+
+        if (startPage < 1) {
+            startPage = 1;
+            endPage = Math.min(3, pages);
+        } else if (endPage > pages) {
+            endPage = pages;
+            startPage = Math.max(pages - 2, 1);
+        }
+
+        for (let i = startPage; i <= endPage; i++) { 
+    %>
+        <li class="page-item <%= current === i? 'active' : '' %>">
+            <a class="page-link" href="/management/account?page=<%= i %>"><%= i %></a>
+        </li>
+    <% } %>
+
+    <% if (current < pages) { %>
+        <li class="page-item">
+            <a class="page-link" href="/management/account?page=<%= current + 1 %>">
+                Next
+            </a>
+        </li>
+    <% } %>
+    <% if (current == pages) { %>
+        <li class="page-item">
+            <span class="page-link page-link-disable">
+                Next
+            </span>
+        </li>
+    <% } %>
+</ul>
+<% } %>

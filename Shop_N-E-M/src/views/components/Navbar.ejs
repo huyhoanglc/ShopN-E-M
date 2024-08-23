@@ -1,0 +1,117 @@
+<div style="
+    display: flex;
+    width: 100%;
+    height: 60px;
+    background-color: #fff;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 20px;
+">
+    <div style="
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+    ">
+        <!-- Left -->
+        <div style="
+            display: flex;
+            align-items: center;
+        ">
+            <a href="/">
+                <img src="/images/logo.png" alt="logo" width="106px" height="40px">
+            </a>
+            <div class="d-none d-lg-flex" style="padding: 20px; align-items: center;">
+                <a class="btn" href="">
+                    Products
+                </a>
+                <a class="btn" href="">
+                    About Us
+                </a>
+                <a class="btn" href="">
+                    Fanpage
+                </a>
+            </div>
+        </div>
+
+        <!-- Right -->
+        <div style="display: flex; align-items: center;">
+            <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"
+                style="color: #000; text-decoration: none;">
+                <i class="bi bi-three-dots-vertical" style="font-size: 20px;"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Menu -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+        <a class="btn" data-bs-dismiss="offcanvas" aria-label="Close">
+            <i class="bi bi-x-lg" style="font-size: 20px;"></i>
+        </a>
+    </div>
+    <div class="offcanvas-body"
+        style="display: flex; flex-direction: column; align-items: center; padding: 5px 30px; gap: 10px;">
+        <div class="d-flex d-lg-none" style="flex-direction: column; align-items: center; padding: 5px 30px; gap: 10px; width: 100%;">
+            <a href="/" class="btn" style="color: #000; width: 100%; text-align: center;">
+                Homepage
+            </a>
+            <a href="/" class="btn" style="color: #000; width: 100%; text-align: center;">
+                Products
+            </a>
+            <a href="/" class="btn" style="color: #000; width: 100%; text-align: center;">
+                About us
+            </a>
+            <a href="https://www.facebook.com/long.nguyen.0510/" class="btn" target="_blank"
+                style="color: #000; width: 100%; text-align: center;">
+                Fanpage
+            </a>
+    
+            <hr style="color: #c3c3c3; width:60%; height: 1px;">
+        </div>
+
+        <% if(!userData) { %>
+            <a href="/auth/login" class="btn btn-light" style="color: #000; width: 100%; text-align: center;">
+                Login
+            </a>
+            <a href="/auth/register" class="btn btn-light" style="color: #000; width: 100%; text-align: center;">
+                Register
+            </a>
+            <% } %>
+                <% if(userData) { %>
+                    <a href="/" class="btn btn-dark" style=" width: 100%; text-align: center;">
+                        Hi, <span style="font-weight: bold; text-transform: capitalize;">
+                            <%= userData.username %>
+                        </span>
+                    </a>
+                    <% if(userData.role==='admin' ) { %>
+                        <a href="/management" class="btn"
+                            style="color: #000; width: 100%; text-align: center;">
+                            Management
+                        </a>
+                        <% } %>
+                            <a class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                style="color: #000; width: 100%; text-align: center;">
+                                Logout
+                            </a>
+                            <% } %>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Logout</h1>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to log out of the app?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
+                <a href="/auth/logout" type="button" class="btn btn-dark">Argee</a>
+            </div>
+        </div>
+    </div>
+</div>

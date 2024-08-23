@@ -1,0 +1,70 @@
+<div style="display: flex; user-select: none; width: 100%; font-weight: bold; justify-content: space-between; align-items: center;">
+    <span>
+        CREATE BRAND
+    </span>
+    <a class="btn" href="/management/brand">
+        View all brand
+    </a>
+</div>
+
+<form action="/management/brand/create" enctype="multipart/form-data"
+    method="post"
+    style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+    <div class="mb-1 mt-3" style="width: 100%; user-select: none;">
+        <label for="name" class="form-label" style="font-weight: bold; font-size: 14px;">
+            Name: <span style="color: red;">*</span>
+        </label>
+        <input type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            autocomplete="off"
+            value="<%= data?.name %>">
+    </div>
+
+    <div class="mb-4 mt-3" style="width: 100%; user-select: none;">
+        <label for="name" class="form-label" style="font-weight: bold; font-size: 14px;">
+            Image: <span style="color: red;">*</span>
+        </label>
+        <input type="file"
+            class="form-control"
+            id="image"
+            name="image"
+            multiple="false"
+            value="<%= data?.image %>">
+    </div>
+    
+    <button type="submit" class="btn btn-dark mb-3" style="width: 100%;">
+        Create
+    </button>
+</form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var myModal = new bootstrap.Modal(document.getElementById('modalError'))
+        myModal.show()
+    })
+</script>
+<% if(errors) { %>
+<div class="modal" id="modalError">
+    <div class="modal-dialog">
+        <div class="modal-content">
+  
+        <div class="modal-header bg-dark" style="color: #fff; display: flex; justify-content: space-between;">
+            <h4 class="modal-title">ERROR</h4>
+            <a class="btn" data-bs-dismiss="modal">
+                <i class="bi bi-x-lg" style="color: #fff; font-size: 20px;"></i>
+            </a>
+        </div>
+  
+        <div class="modal-body" style="display: flex;
+            flex-direction: column;
+            min-height: 150px;
+            justify-content: center;">
+            - <%= errors %>
+        </div>
+  
+        </div>
+    </div>
+</div>
+<% } %>
