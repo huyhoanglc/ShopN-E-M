@@ -6,7 +6,6 @@
 
 ## **Team Members**
 
-## **Members**:
 - [![Hoàng Gia Huy](https://img.shields.io/badge/GitHub-Hoàng%20Gia%20Huy-181717?style=flat&logo=github)](https://github.com/huyhoanglc)
 - [![Nguyễn Anh Minh](https://img.shields.io/badge/GitHub-Nguyễn%20Anh%20Minh-181717?style=flat&logo=github)](https://github.com/nguyenanhminh)
 - [![Nguyễn Hoàng Long](https://img.shields.io/badge/GitHub-Nguyễn%20Hoàng%20Long-181717?style=flat&logo=github)](https://github.com/HoangLong510)
