@@ -11,7 +11,7 @@
 - **Authentication and Authorization**: Register, login, and user role management (admin and customer).
 - **Product Search and Filter**: Search products by name, brand, or category.
 - **Order Management**: Track and manage customer orders.
-- **User Interface**: A user-friendly interface designed with HTML, CSS, and JavaScript.
+- **User Interface**: A user-friendly interface designed with HTML, CSS, JavaScript, and Bootstrap 5.
 
 ## **Technologies Used**
 
@@ -20,6 +20,7 @@
 - **MongoDB**: NoSQL database used to store product and user information.
 - **Mongoose**: ODM for MongoDB, making data management easier.
 - **EJS**: Template engine used for rendering dynamic web pages.
+- **Bootstrap 5**: A front-end framework for building responsive, mobile-first websites.
 
 ## **Installation Guide**
 
