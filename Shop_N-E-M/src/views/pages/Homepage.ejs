@@ -1,7 +1,4 @@
 <div>
-  <!-- Breadcrumb -->
-  <!-- End Breadcrumb -->
-
   <div class="hero " style="width: 186vh; margin-left: 50px;">
     <!--  carousel  -->
     <div id="carouselAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-pause="false">
@@ -31,7 +28,9 @@
         }
       });
     </script>
-    <!--  end carousel  -->
+  </div>
+  <!--  end carousel  -->
+  <div class="show-product">
     <!-- Hot-Sale -->
     <section class="hot-sale">
       <div class="countdown">
@@ -62,7 +61,7 @@
       </div>
     </section>
     <script>
-      const saleEndDate = <%= saleEndDate %>;
+      const saleEndDate = <%= saleEndDate %>
 
       function updateCountdown() {
         const now = new Date().getTime();
@@ -87,6 +86,52 @@
       const interval = setInterval(updateCountdown, 1000);
     </script>
     <!-- End Hot-Sale -->
+    <!-- Products -->
+    <div class="block-featured-product container">
+      <div class="product-list-title is-flex is-flex-wrap-wrap ">
+
+        <a href="Pages/Products.ejs" class="title button__link">
+          <h2 class="mb-3">ĐIỆN THOẠI NỔI BẬT NHẤT</h2>
+        </a>
+      </div>
+      <form action="/" method="post" class="mb-3" style="display: flex; justify-content: end;">
+        <input type="hidden" name="brands" value="Apple" />
+        <button type="submit" class="btn btn-link">Apple</button>
+        <input type="hidden" name="brands" value="Samsung" />
+        <button type="submit" class="btn btn-link">Samsung</button>
+        <input type="hidden" name="brands" value="Xiaomi" />
+        <button type="submit" class="btn btn-link">Xiaomi</button>
+        <input type="hidden" name="brands" value="OPPO" />
+        <button type="submit" class="btn btn-link">OPPO</button>
+        <input type="hidden" name="brands" value="Vivo" />
+        <button type="submit" class="btn btn-link">Vivo</button>
+        <input type="hidden" name="brands" value="Realme" />
+        <button type="submit" class="btn btn-link">Realme</button>
+        <input type="hidden" name="brands" value="ASUS" />
+        <button type="submit" class="btn btn-link">ASUS</button>
+        <input type="hidden" name="brands" value="" />
+        <button type="submit" class="btn btn-link">Xem tất cả</button>
+      </form>
+      <!-- !!! -->
+      <div class="product-list">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5 g-4">
+          <% products.forEach(product => { %>
+          <div class="col">
+            <div class="card h-100">
+              <img src="/upload/<%= product.image %>" class="card-img-top" alt="<%= product.name %>">
+              <div class="card-body">
+                <h5 class="card-title"><%= product.name %></h5>
+                <p class="card-text">Price: <%= product.price %> VND</p>
+              </div>
+              <p class="card-text finance-info">Trả góp 0%</p>
+            </div>
+          </div>
+          <% }); %>
+        </div>
+      </div>
+      <!-- !!! -->
+    </div>
+    <!-- End Products -->
   </div>
   <div class="promotions">
 

@@ -7,6 +7,7 @@ import { managementMiddleware } from '../middlewares/managementMiddleware.js'
 const rootRouter = express.Router()
 
 rootRouter.get('/', getHomePage)
+rootRouter.post('/', getHomePage);
 rootRouter.use('/auth', redirectIfAuth, authRouter)
 rootRouter.use('/management', managementMiddleware, managementRouter)
 

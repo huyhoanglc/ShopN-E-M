@@ -5,7 +5,7 @@
 
 /* 01-Overall */
 .main {
-    background-color: #e6e6e6;
+    background-color: #ffffff;
     width: 100%;
     min-height: calc(100vh - 60px);
     overflow: auto;
@@ -15,6 +15,9 @@
     padding: 20px;
     width: 100%;
 }
+
+
+
 
 input:focus, textarea:focus, select:focus {
     outline: none !important;
@@ -81,7 +84,7 @@ select.decorated option:hover {
 }
 
 /* End Carousel */
-/*03-Products */
+/*03-Hot-sale */
 .hot-sale {
     background-color: #cf3f3f;
     border-radius: 8px;
@@ -155,4 +158,88 @@ select.decorated option:hover {
     font-size: 1.5em;
 }
 
-/* End Products */
+/* End Hot-Sale */
+/* 04-Product-List */
+.show-product a{
+    color: black ;
+    text-decoration: none ;
+}
+
+.block-featured-product{
+    background-color: #fff;
+}
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; 
+    
+}
+
+.product-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    width: 200px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-item img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.product-item h3 {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.product-item p {
+    font-size: 14px;
+    color: #555;
+}
+
+.product-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.list-related-tag {
+    display: flex; 
+    justify-content: flex-end; 
+}
+
+.related-tag.button__link {
+    margin: 5px;
+    padding: 5px 10px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    color: #333;
+    transition: background-color 0.2s;
+}
+
+.related-tag.button__link:hover {
+    background-color: #ddd;
+}
+.card {
+    position: relative;
+}
+
+.finance-info {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #28a745; 
+    color: white; 
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 8px;
+    font-weight: bold;
+}
+/* End Product-list */
