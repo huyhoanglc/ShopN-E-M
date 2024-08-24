@@ -1,8 +1,11 @@
-import Products from '../models/productModel.js';
+import Products from '../models/productModel.js'
+import Brands from '../models/brandModel.js'
 
 export const getHomePage = async (req, res) => {
     try {
         const { brand } = req.body;
+
+        const brands = await Brands.find();
 
         const query = brand ? { brand } : {};
         const products = await Products.find(query);
@@ -12,7 +15,8 @@ export const getHomePage = async (req, res) => {
         res.render('pages/Homepage', {
             title: "Homepage",
             products,
-            saleEndDate
+            saleEndDate,
+            brands
         });
     } catch (error) {
         console.error('Error loading homepage:', error);
