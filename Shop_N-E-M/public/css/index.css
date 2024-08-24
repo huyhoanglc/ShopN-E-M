@@ -83,7 +83,7 @@ select.decorated option:hover {
 /* End Carousel */
 /*03-Products */
 .hot-sale {
-    background-color: #fff;
+    background-color: #cf3f3f;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -97,10 +97,32 @@ select.decorated option:hover {
 }
 
 #timer {
-    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 28px;
+    color: #fff;
+    padding: 20px;
+  }
+  
+  #timer span {
+    background-color: #FFF0BF;
+    color: #222222;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-weight: bold;
-}
-
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  #timer span:not(:last-child) {
+    margin-right: 10px;
+  }
+  
 .products {
     display: flex;
     flex-wrap: wrap;
