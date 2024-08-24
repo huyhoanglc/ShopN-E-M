@@ -1,1 +1,92 @@
-Homepage
+<div>
+  <!-- Breadcrumb -->
+  <!-- End Breadcrumb -->
+
+  <div class="hero " style="width: 186vh; margin-left: 50px;">
+    <!--  carousel  -->
+    <div id="carouselAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-pause="false">
+      <div class="carousel-inner">
+        <div id='s1' class="carousel-item active bg-1" data-bs-interval="3000"></div>
+        <div id='s2' class="carousel-item bg-2" data-bs-interval="3000"></div>
+        <div id='s3' class="carousel-item bg-3" data-bs-interval="3000"></div>
+        <div id='s4' class="carousel-item bg-4" data-bs-interval="3000"></div>
+        <div id='s5' class="carousel-item bg-5" data-bs-interval="3000"></div>
+        <div id='s6' class="carousel-item bg-6" data-bs-interval="3000"></div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselAutoplaying" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselAutoplaying" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+
+    <script>
+      carousel.addEventListener('slid.bs.carousel', function(event) {
+        if (event.to === carousel.querySelectorAll('.carousel-item').length - 1) {
+          bsCarousel.to(0);
+        }
+      });
+    </script>
+    <!--  end carousel  -->
+    <!-- Hot-Sale -->
+    <section class="hot-sale">
+      <div class="countdown">
+        <h2>Hot Sale Đang Diễn Ra</h2>
+        <div id="timer">
+          <span id="days">00</span> Ngày
+          <span id="hours">00</span> Giờ
+          <span id="minutes">00</span> Phút
+          <span id="seconds">00</span> Giây
+        </div>
+      </div>
+      <div class="products">
+        <h2>Sản Phẩm Hot</h2>
+        <div class="product">
+          <img src="/path/to/your-gif1.gif" alt="Sản phẩm 1">
+          <p>Sản phẩm 1</p>
+          <span class="price">1,000,000 VNĐ</span>
+        </div>
+        <div class="product">
+          <img src="/path/to/your-gif2.gif" alt="Sản phẩm 2">
+          <p>Sản phẩm 2</p>
+          <span class="price">1,500,000 VNĐ</span>
+        </div>
+        <!-- Thêm nhiều sản phẩm khác ở đây -->
+      </div>
+    </section>
+    <script>
+      const saleEndDate = <%= saleEndDate %>;
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = saleEndDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerHTML = days;
+        document.getElementById("hours").innerHTML = hours;
+        document.getElementById("minutes").innerHTML = minutes;
+        document.getElementById("seconds").innerHTML = seconds;
+
+        if (distance < 0) {
+          clearInterval(interval);
+          document.getElementById("timer").innerHTML = "Hết thời gian!";
+        }
+      }
+
+      const interval = setInterval(updateCountdown, 1000);
+    </script>
+    <!-- End Hot-Sale -->
+  </div>
+  <div class="promotions">
+
+  </div>
+
+</div>
