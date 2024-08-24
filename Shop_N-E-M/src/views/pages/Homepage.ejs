@@ -20,7 +20,6 @@
       </button>
     </div>
 
-
     <script>
       carousel.addEventListener('slid.bs.carousel', function(event) {
         if (event.to === carousel.querySelectorAll('.carousel-item').length - 1) {
@@ -94,24 +93,14 @@
           <h2 class="mb-3">ĐIỆN THOẠI NỔI BẬT NHẤT</h2>
         </a>
       </div>
-      <form action="/" method="post" class="mb-3" style="display: flex; justify-content: end;">
-        <input type="hidden" name="brands" value="Apple" />
-        <button type="submit" class="btn btn-link">Apple</button>
-        <input type="hidden" name="brands" value="Samsung" />
-        <button type="submit" class="btn btn-link">Samsung</button>
-        <input type="hidden" name="brands" value="Xiaomi" />
-        <button type="submit" class="btn btn-link">Xiaomi</button>
-        <input type="hidden" name="brands" value="OPPO" />
-        <button type="submit" class="btn btn-link">OPPO</button>
-        <input type="hidden" name="brands" value="Vivo" />
-        <button type="submit" class="btn btn-link">Vivo</button>
-        <input type="hidden" name="brands" value="Realme" />
-        <button type="submit" class="btn btn-link">Realme</button>
-        <input type="hidden" name="brands" value="ASUS" />
-        <button type="submit" class="btn btn-link">ASUS</button>
-        <input type="hidden" name="brands" value="" />
-        <button type="submit" class="btn btn-link">Xem tất cả</button>
-      </form>
+      <div class="d-flex">
+        <% brands.map(brand => { %>
+          <form action="/" method="post" class="mb-3" style="display: flex; justify-content: end;">
+            <input type="hidden" name="brand" id="brand" value="<%= brand._id %>" />
+            <button type="submit" class="btn btn-link"><%= brand.name %></button>
+          </form>
+        <% }) %>
+      </div>
       <!-- !!! -->
       <div class="product-list">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5 g-4">
