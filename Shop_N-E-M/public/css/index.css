@@ -85,8 +85,11 @@ select.decorated option:hover {
 
 /* End Carousel */
 /*03-Hot-sale */
+.gif-title{
+    background-image: url(../images/gif/hot-sale-cuoi-tuan-20-03-2024.gif);
+}
 .hot-sale {
-    background-color: #cf3f3f;
+    background: linear-gradient(rgb(248, 62, 96), rgb(254, 80, 72)) 0% 0% / cover;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -158,6 +161,73 @@ select.decorated option:hover {
     font-size: 1.5em;
 }
 
+.swiper-container .finance-info {
+    position: absolute;
+    width: 60px;
+    top: 0.5px;
+    left: 0.5px;
+    background-color: #b60600; 
+    color: white; 
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 8px;
+    font-weight: bold;
+}
+.swiper-container {
+    width: 100%;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .swiper-slide {
+    width: 150px;
+    flex-shrink: 0;
+  }
+  
+  .swiper-slide .card {
+    width: 200px; 
+    margin: auto;
+    font-size: 15px;
+  }
+  
+.swiper-slide .card-img-top {
+    height: 150px; 
+    object-fit: cover;
+  }
+  
+  .swiper-slide .card-body {
+    text-align: center;
+    padding: 10px;
+  }
+ .swiper-slide .card-title{
+    font-size: 12px;
+ }
+  
+  .swiper-wrapper {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .swiper-button-prev,
+.swiper-button-next {
+  border-radius: 50%;
+}
+.swiper-button-prev {
+    left: 10px; 
+  }
+.swiper-button-next {
+  right: 10px;
+
+.swiper-container:hover .swiper-button-prev,
+.swiper-container:hover .swiper-button-next {
+  opacity: 1;
+}
+.swiper-button-prev,
+.swiper-button-next {
+ opacity: 0;
+ transition: opacity 0.3s;
+}}
 /* End Hot-Sale */
 /* 04-Product-List */
 .show-product a{
