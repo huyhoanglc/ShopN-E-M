@@ -11,8 +11,8 @@ const validateUser = async (email, phone) => {
         if (!regexEmail.test(email)) {
             errors.push('Email is invalid!')
         } else {
-            const checkEmail = await Users.exists({ email: email })
-            if (checkEmail) {
+            const user = await Users.findOne({ email: email })
+            if (user && user.email !== email) {
                 errors.push('Email is already exists!')
             }
         }
@@ -63,19 +63,19 @@ class controllers {
                 user: userData,
                 errors: errors
             })
-        }
-
-        const user = await Users.findById(id)
-        const checkPassword = await bcrypt.compareSync(password, user.password)
-        if (!checkPassword) {
-            res.render('pages/user/User', {
-                title: 'Information',
-                user: userData,
-                errors: ["Invalid password."]
-            })
         } else {
-            await Users.findByIdAndUpdate(id, { email: email, phone: phone })
-            res.redirect('/user')
+            const user = await Users.findById(id)
+            const checkPassword = await bcrypt.compareSync(password, user.password)
+            if (!checkPassword) {
+                res.render('pages/user/User', {
+                    title: 'Information',
+                    user: userData,
+                    errors: ["Invalid password."]
+                })
+            } else {
+                await Users.findByIdAndUpdate(id, { email: email, phone: phone })
+                res.redirect('/user')
+            }
         }
     }
 
