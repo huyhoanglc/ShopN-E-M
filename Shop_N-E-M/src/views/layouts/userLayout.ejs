@@ -17,30 +17,25 @@
         min-height: 500px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     ">
-        <a href="/management"
-            class="btn <%= path === '/management' ? "btn-dark" : "btn-light" %>"
+        <a href="/user"
+            class="btn <%= path === '/user' ? "btn-dark" : "btn-light" %>"
             style="width: 100%; text-align: center;">
             General
         </a>
-        <a href="/management/account"
-            class="btn <%= path.startsWith('/management/account') ? "btn-dark" : "btn-light" %>"
+        <a href="/user/security"
+            class="btn <%= path === '/user/security' ? "btn-dark" : "btn-light" %>"
             style="width: 100%; text-align: center;">
-            Account
+            Security
         </a>
-        <a href="/management/product"
-            class="btn <%= path.startsWith('/management/product') ? "btn-dark" : "btn-light" %>"
+        <a href="/user"
+            class="btn <%= path === '/user/shopping-cart' ? "btn-dark" : "btn-light" %>"
             style="width: 100%; text-align: center;">
-            Product
+            Shopping Cart
         </a>
-        <a href="/management/category"
-            class="btn <%= path.startsWith('/management/category') ? "btn-dark" : "btn-light" %>"
+        <a href="/user"
+            class="btn <%= path === '/user/orders' ? "btn-dark" : "btn-light" %>"
             style="width: 100%; text-align: center;">
-            Category
-        </a>
-        <a href="/management/brand"
-            class="btn <%= path.startsWith('/management/brand') ? "btn-dark" : "btn-light" %>"
-            style="width: 100%; text-align: center;">
-            Brand
+            My Orders
         </a>
     </div>
     <div class="col-lg-9 col-12" style="
