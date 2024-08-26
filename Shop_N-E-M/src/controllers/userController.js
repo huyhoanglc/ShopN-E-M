@@ -22,8 +22,8 @@ const validateUser = async (email, phone) => {
         if (!regexPhone.test(phone)) {
             errors.push('Phone is invalid!')
         } else {
-            const checkPhone = await Users.exists({ phone: phone })
-            if (checkPhone) {
+            const user = await Users.findOne({ phone: phone })
+            if (user && user.phone !== phone) {
                 errors.push('Phone is already exists!')
             }
         }
