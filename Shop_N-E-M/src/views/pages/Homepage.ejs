@@ -1,5 +1,5 @@
 <div>
-  <div class="hero " style="width: 186vh; margin-left: 50px;">
+  <div class="hero">
     <!--  carousel  -->
     <div id="carouselAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-pause="false">
       <div class="carousel-inner">
@@ -28,7 +28,7 @@
       });
     </script>
   </div>
-  <!--  end carousel  -->
+  <!--  End carousel  -->
   <div class="show-product">
     <!-- Hot-Sale -->
     <section class="hot-sale">
@@ -96,8 +96,6 @@
       </script>
     </section>
     <script>
-      const saleEndDate = <%= saleEndDate %>
-
       function updateCountdown() {
         const now = new Date().getTime();
         const distance = saleEndDate - now;

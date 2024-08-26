@@ -2,6 +2,7 @@
 /* 01-Overall */
 /* 02-Carousel */
 /* 03-Products */
+/* End Menu */
 
 /* 01-Overall */
 .main {
@@ -16,9 +17,6 @@
     padding: 20px;
     width: 100%;
 }
-
-
-
 
 input:focus, textarea:focus, select:focus {
     outline: none !important;
@@ -58,6 +56,13 @@ select.decorated option:hover {
 }
 
 /* 02 Carousel */
+.hero{
+    display: flex;
+    justify-content: center;
+}
+.carousel{
+  width: 1380px;
+}
 .carousel-item{
     height: 300px;
     width: 690px;
