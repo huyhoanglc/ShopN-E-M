@@ -21,7 +21,7 @@ export const authMiddleware = (req, res, next) => {
                         })
                     }
 
-                    const userData = await Users.findOne({ _id: userId }).select("username role")
+                    const userData = await Users.findOne({ _id: userId }).select("username email phone role createdAt updatedAt")
                     req.body.userData = userData
 
                     res.render = function (view, options = {}, callback) {
@@ -56,4 +56,19 @@ export const redirectIfAuth = (req, res, next) => {
     } else {
         next()
     }
+}
+
+export const userPageRedirectIfNotAuth = (req, res, next) => {
+    if (!req.body.userData) {
+        return res.redirect('/login')
+    }
+
+    const originalRender = res.render
+    res.render = function (view, options = {}, callback) {
+        options.layout = "layouts/userLayout"
+        options.path = req.originalUrl
+        return originalRender.call(this, view, options, callback)
+    }
+
+    next()
 }

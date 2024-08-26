@@ -1,0 +1,140 @@
+<div style="display: flex;
+    user-select: none;
+    width: 100%;
+    padding-top: 7px;
+    font-weight: bold;
+    justify-content:
+    space-between;
+    align-items:
+    center;">
+    <span>
+        INFORMATION
+    </span>
+</div>
+
+<form action="/user/update/<%= user._id %>" method="post"
+    style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+    <div class="mb-1 mt-3" style="width: 100%; user-select: none;">
+        <label for="name" class="form-label" style="font-weight: bold; font-size: 14px;">
+            Username: <!-- <span style="color: red;">*</span> -->
+        </label>
+        <input type="text" style="background-color: #dcdcdc;" class="form-control" id="name" name="name"
+            autocomplete="off" readonly value="<%= user?.username %>">
+    </div>
+
+    <div class="mb-3 mt-3" style="width: 100%; user-select: none;">
+        <label for="email" class="form-label" style="font-weight: bold; font-size: 14px;">
+            Email:
+        </label>
+        <input type="text" class="form-control" id="email" name="email" autocomplete="off" value="<%= user?.email %>">
+    </div>
+
+    <div class="mb-3 mt-3" style="width: 100%; user-select: none;">
+        <label for="phone" class="form-label" style="font-weight: bold; font-size: 14px;">
+            Phone:
+        </label>
+        <input type="number" class="form-control" id="phone" name="phone" autocomplete="off" value="<%= user?.phone %>">
+    </div>
+
+    <div class="mb-3 mt-3" style="width: 100%; user-select: none;">
+        <label for="createdAt" class="form-label" style="font-weight: bold; font-size: 14px;">
+            CreatedAt:
+        </label>
+        <input type="text" style="background-color: #dcdcdc;" class="form-control" id="createdAt" name="createdAt"
+            autocomplete="off" readonly value="<%= user?.createdAt %>">
+    </div>
+
+    <div class="mb-5 mt-3" style="width: 100%; user-select: none;">
+        <label for="updatedAt" class="form-label" style="font-weight: bold; font-size: 14px;">
+            UpdatedAt:
+        </label>
+        <input type="text" style="background-color: #dcdcdc;" class="form-control" id="updatedAt" name="updatedAt"
+            autocomplete="off" readonly value="<%= user?.updatedAt %>">
+    </div>
+
+    <% errors.map(error => { %>
+        <span style="color: red; width: 100%;">
+            * <%= errors %>
+        </span>
+    <% }) %>
+
+    <a class="btn btn-dark mb-3" style="width: 100%;" data-bs-toggle="modal" data-bs-target="#modalUpdate">
+        Update
+    </a>
+
+    <a class="btn btn-danger mb-3" style="width: 100%;" data-bs-toggle="modal" data-bs-target="#modalDelete">
+        Delete account
+    </a>
+
+    <!-- modal update -->
+    <div class="modal" id="modalUpdate">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Update Account</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <span>
+                        Are you sure you want to update this account?
+                    </span>
+
+                    <div class="mb-3 mt-3" style="width: 100%; user-select: none;">
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="password"
+                            name="password"
+                            autocomplete="off"
+                            placeholder="Enter your password">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-dark">
+                        Update
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- modal delete -->
+<form class="modal" id="modalDelete" action="/user/delete/<%= user?._id %>" method="post">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete account</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <span>
+                    Are you sure you want to delete this account?
+                </span>
+
+                <div class="mb-3 mt-3" style="width: 100%; user-select: none;">
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="password"
+                        name="password"
+                        autocomplete="off"
+                        placeholder="Enter your password">
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
+                <button class="btn btn-dark" type="submit">
+                    Argee
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
