@@ -32,8 +32,9 @@
   <div class="show-product">
     <!-- Hot-Sale -->
     <section class="hot-sale">
-      <div class="countdown">
-        <h2>Hot Sale Đang Diễn Ra</h2>
+      <div class="countdown ">
+        <div class="gif-title" style="height: 90px; width: 700px; margin: auto; ">
+        </div>
         <div id="timer">
           <span id="days">00</span>
           <p style="font-size: 30px;">:</p>
@@ -44,20 +45,55 @@
           <span id="seconds">00</span>
         </div>
       </div>
-      <div class="products">
-        <h2>Sản Phẩm Hot</h2>
-        <div class="product">
-          <img src="/path/to/your-gif1.gif" alt="Sản phẩm 1">
-          <p>Sản phẩm 1</p>
-          <span class="price">1,000,000 VNĐ</span>
+      <!-- Swiper container -->
+      <div class="swiper-container">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <% randomproducts.forEach(product => { %>
+          <div class="swiper-slide">
+            <div class="card h-100">
+              <img src="/upload/<%= product.image %>" class="card-img-top" alt="<%= product.name %>">
+              <div class="card-body">
+                <h5 class="card-title"><%= product.name %></h5>
+                <p class="card-text">Price: <%= product.price %> VND</p>
+              </div>
+              <p class="card-text finance-info">Giảm 16%</p>
+            </div>
+          </div>
+          <% }) %>
         </div>
-        <div class="product">
-          <img src="/path/to/your-gif2.gif" alt="Sản phẩm 2">
-          <p>Sản phẩm 2</p>
-          <span class="price">1,500,000 VNĐ</span>
+        <div class="swiper-button-prev">
+          <span>&#10094;</span>
         </div>
-        <!-- Thêm nhiều sản phẩm khác ở đây -->
+        <div class="swiper-button-next">
+          <span>&#10095;</span>
+        </div>
       </div>
+      <script src="/node_modules/swiper/swiper-bundle.min.js"></script>
+      <script>
+        var swiper = new Swiper('.swiper-container', {
+          direction: 'horizontal',
+          slidesPerView: 5,
+          spaceBetween: 20,
+          loop: true,
+          autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          scrollbar: {
+            el: '.swiper-scrollbar',
+          },
+        });
+      </script>
     </section>
     <script>
       const saleEndDate = <%= saleEndDate %>
@@ -93,13 +129,17 @@
           <h2 class="mb-3">ĐIỆN THOẠI NỔI BẬT NHẤT</h2>
         </a>
       </div>
-      <div class="d-flex">
+      <div class="d-flex" style="display: flex; justify-content: end;">
+
         <% brands.map(brand => { %>
-          <form action="/" method="post" class="mb-3" style="display: flex; justify-content: end;">
-            <input type="hidden" name="brand" id="brand" value="<%= brand._id %>" />
-            <button type="submit" class="btn btn-link"><%= brand.name %></button>
-          </form>
+        <form action="/" method="post" class="mb-3">
+          <input type="hidden" name="brand" id="brand" value="<%= brand._id %>" />
+          <button type="submit" class="btn btn-light"><%= brand.name %></button>
+        </form>
         <% }) %>
+        <a href="/">
+          <button class="btn btn-light">All</button>
+        </a>
       </div>
       <!-- !!! -->
       <div class="product-list">
