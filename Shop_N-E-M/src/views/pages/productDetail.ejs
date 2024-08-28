@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= product.name %> - Product Details</title>
+    <link rel="stylesheet" href="/styles.css"> <!-- Đảm bảo đường dẫn đến file CSS -->
+</head>
+<body>
+    <header>
+        <h1><%= title %></h1>
+        <nav>
+            <a href="/">Home</a> | 
+            <a href="/product">Products</a>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="product-detail-container">
+            <div class="product-image-wrapper">
+                <% if (product.image) { %>
+                    <img src="/upload/<%= product.image %>" alt="<%= product.name %>" class="product-image">
+                <% } %>
+            </div>
+            <div class="product-details">
+                <h2><%= product.name %></h2>
+                <p><strong>Price:</strong> $<%= product.price %></p>
+                <p><strong>Description:</strong> <%= product.description %></p>
+                <p><strong>Quantity:</strong> <%= product.quantity %></p>
+                <!-- Thêm các thông tin chi tiết khác nếu cần -->
+            </div>
+        </div>
+    </main>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #f8f8f8;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin-right: 10px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .product-detail-container {
+            display: flex;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-image-wrapper {
+            flex: 1;
+            max-width: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .product-details {
+            flex: 2;
+            padding: 20px;
+            font-size: 1rem;
+        }
+
+        .product-details h2 {
+            margin: 0 0 12px;
+            font-size: 1.5rem;
+        }
+
+        .product-details p {
+            margin: 6px 0;
+            line-height: 1.5;
+        }
+    </style>
+</body>
+</html>
