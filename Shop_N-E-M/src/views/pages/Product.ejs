@@ -1,0 +1,81 @@
+<main>
+    <h1><%= title %></h1>
+    <div class="product-container">
+            <% products.forEach(product => { %>
+                <div class="product-card">
+                    <% if (product.image) { %>
+                        <div class="product-image-wrapper">
+                            <a href="/product/<%= product._id %>">
+                                <img src="/upload/<%= product.image %>" alt="<%= product.name %>" class="product-image">
+                            </a>
+                        </div>
+                    <% } %>
+                    <div class="product-details">
+                        <a href="/product/<%= product._id %>">
+                            <h3><%= product.name %></h3>
+                        </a>
+                        <p><strong>Price:</strong> $<%= product.price %></p>
+                        <p><strong>Description:</strong> <%= product.description %></p>
+                        <p><strong>Quantity:</strong> <%= product.quantity %></p>
+                    </div>
+                </div>
+            <% }) %>
+    </div>
+</main>
+
+
+<style>
+    main {
+        padding: 20px;
+    }
+
+    .product-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .product-card {
+        display: flex;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: #fff;
+        width: 100%;
+        max-width: 500px; /* Tăng kích thước tối đa của khung sản phẩm */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Thêm hiệu ứng bóng để làm nổi bật sản phẩm */
+    }
+
+    .product-image-wrapper {
+        flex: 1;
+        max-width: 250px; /* Tăng kích thước tối đa của hình ảnh */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .product-image {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .product-details {
+        flex: 2;
+        padding: 20px; /* Tăng padding */
+        font-size: 1rem; /* Tăng kích thước font */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Căn giữa nội dung */
+    }
+
+    .product-details h3 {
+        margin: 0 0 12px; /* Tăng margin dưới tiêu đề */
+        font-size: 1.2rem; /* Tăng kích thước font tiêu đề */
+    }
+
+    .product-details p {
+        margin: 6px 0; /* Tăng margin của các đoạn văn */
+        line-height: 1.5; /* Tăng khoảng cách giữa các dòng để dễ đọc hơn */
+    }
+</style>
