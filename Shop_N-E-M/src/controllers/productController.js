@@ -1,5 +1,6 @@
 import Products from '../models/productModel.js'
 import Brands from '../models/brandModel.js'
+
 export const getProductPage = async (req, res) => {
     try {
         const products = await Products.find(); // Lấy tất cả sản phẩm từ cơ sở dữ liệu
@@ -11,6 +12,21 @@ export const getProductPage = async (req, res) => {
         });
     } catch (err) {
         res.status(500).send(err.message); // Xử lý lỗi
+    }
+};
+
+export const searchProduct = async (req, res) => {
+    try {
+        const { searchValue } = req.body
+        const products = await Products.find({ name: { $regex: searchValue, $options: 'i' } }).limit(10)
+        const brands = await Brands.find()
+        res.render('pages/product', {
+            title: "Product",
+            products,
+            brands
+        });
+    } catch (err) {
+        res.status(500).send(err.message);
     }
 };
 
@@ -31,7 +47,7 @@ export const getProductDetail = async (req, res) => {
 export const getProductByBrand = async (req, res) => {
     try {
         const brandId = req.params.id;
-        const products = await Products.find({brand:brandId}); // Lấy tất cả sản phẩm từ cơ sở dữ liệu
+        const products = await Products.find({ brand: brandId }); // Lấy tất cả sản phẩm từ cơ sở dữ liệu
         const brands = await Brands.find(); // Lấy tất cả sản phẩm từ cơ sở dữ liệu
         res.render('pages/product', {
             title: "Product",

@@ -1,4 +1,6 @@
 import Users from '../models/userModel.js'
+import Carts from '../models/cartModel.js'
+import Products from '../models/productModel.js'
 import bcrypt from 'bcryptjs'
 
 const validateUser = async (email, phone) => {
@@ -30,6 +32,16 @@ const validateUser = async (email, phone) => {
     }
 
     return errors
+}
+
+const totalPrice = (cart) => {
+    let total = 0
+    if (cart.products && cart.products.length > 0) {
+        for (let i = 0; i < cart.products.length; i++) {
+            total += cart.products[i].quantity * cart.products[i].price
+        }
+    }
+    return total
 }
 
 class controllers {
@@ -100,6 +112,114 @@ class controllers {
         } else {
             await Users.findByIdAndDelete(id)
             res.redirect('/')
+        }
+    }
+
+    // Cart
+    getCartPage = async (req, res) => {
+        const { userData } = req.body
+
+        const cart = await Carts.findOne({ userId: userData._id })
+
+        res.render('pages/user/Cart', {
+            title: 'Shopping Cart',
+            products: cart.products ? cart.products : [],
+            totalPrice: totalPrice(cart)
+        })
+    }
+
+    addToCart = async (req, res) => {
+        const { id } = req.params
+        const { userData } = req.body
+        const userId = userData._id
+
+        const findProduct = await Products.findById(id)
+
+        const product = {
+            id: id,
+            name: findProduct.name,
+            price: findProduct.price,
+            image: findProduct.image,
+            quantity: 1
+        }
+
+        const checkCart = await Carts.findOne({ userId: userId })
+
+        if (!checkCart) {
+            const newCart = new Carts({
+                userId: userId,
+                products: [product]
+            })
+            await newCart.save()
+        } else {
+            const products = checkCart.products
+            let isExists = false
+            products.map((product) => {
+                if (product.id === id) {
+                    isExists = true
+                    product.quantity += 1
+                }
+            })
+            if (!isExists) {
+                products.push(product)
+            }
+            await Carts.findByIdAndUpdate(checkCart._id, { products: products })
+        }
+
+        const cart = await Carts.findOne({ userId: userId })
+
+        res.render('pages/user/Cart', {
+            title: 'Shopping Cart',
+            products: cart.products ? cart.products : [],
+            totalPrice: totalPrice(cart)
+        })
+    }
+
+    deleteToCart = async (req, res) => {
+        const id = req.params.id
+        const { userData } = req.body
+        const userId = userData._id
+
+        const cart = await Carts.findOne({ userId: userId })
+        const products = cart.products.filter(product => product.id != id)
+
+        const newCart = await Carts.findByIdAndUpdate(cart._id, { products: products }, { new: true })
+
+        res.render('pages/user/Cart', {
+            title: 'Shopping Cart',
+            products: newCart.products ? newCart.products : [],
+            totalPrice: totalPrice(newCart)
+        })
+    }
+
+    cartUpdateQuantity = async (req, res) => {
+        const id = req.params.id
+        const { userData } = req.body
+        const userId = userData._id
+        const quantity = parseInt(req.body.quantity)
+        const cart = await Carts.findOne({ userId: userId })
+
+        if (!quantity || quantity < 0) {
+            res.render('pages/user/Cart', {
+                title: 'Shopping Cart',
+                products: cart.products ? cart.products : [],
+                totalPrice: totalPrice(cart)
+            })
+        } else {
+            const products = cart.products.map(product => {
+                if (product.id === id) {
+                    product.quantity = quantity
+                }
+                return product
+            })
+
+            const newCart = await Carts.findByIdAndUpdate(cart._id, { products: products }, { new: true })
+
+            res.render('pages/user/Cart', {
+                title: 'Shopping Cart',
+                products: newCart.products ? newCart.products : [],
+                totalPrice: totalPrice(newCart)
+            })
         }
     }
 }
