@@ -33,7 +33,7 @@ export const searchProduct = async (req, res) => {
 export const getProductDetail = async (req, res) => {
     try {
         const productId = req.params.id;
-        const product = await Products.findById(productId);
+        const product = await Products.findByIdAndUpdate(productId, { $inc: { views: 1 } });
         if (!product) {
             return res.status(404).render('404', { title: 'Product Not Found' });
         }
