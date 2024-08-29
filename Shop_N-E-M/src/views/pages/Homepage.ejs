@@ -96,6 +96,8 @@
       </script>
     </section>
     <script>
+      const saleEndDate = <%= saleEndDate %>
+
       function updateCountdown() {
         const now = new Date().getTime();
         const distance = saleEndDate - now;
