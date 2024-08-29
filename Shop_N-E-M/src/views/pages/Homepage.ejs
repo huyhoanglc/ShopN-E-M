@@ -52,14 +52,16 @@
           <!-- Slides -->
           <% randomproducts.forEach(product => { %>
           <div class="swiper-slide">
-            <div class="card h-100">
-              <img src="/upload/<%= product.image %>" class="card-img-top" alt="<%= product.name %>">
-              <div class="card-body">
-                <h5 class="card-title"><%= product.name %></h5>
-                <p class="card-text">Price: <%= product.price %> VND</p>
+            <a href="/product/<%= product._id%>">
+              <div class="card h-100">
+                <img src="/upload/<%= product.image %>" class="card-img-top" alt="<%= product.name %>">
+                <div class="card-body">
+                  <h5 class="card-title"><%= product.name %></h5>
+                  <p class="card-text">Price: <%= product.price %> VND</p>
+                </div>
+                <p class="card-text finance-info">Giảm 16%</p>
               </div>
-              <p class="card-text finance-info">Giảm 16%</p>
-            </div>
+            </a>
           </div>
           <% }) %>
         </div>
@@ -146,14 +148,16 @@
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5 g-4">
           <% products.forEach(product => { %>
           <div class="col">
-            <div class="card h-100">
-              <img src="/upload/<%= product.image %>" class="card-img-top" alt="<%= product.name %>">
-              <div class="card-body">
-                <h5 class="card-title"><%= product.name %></h5>
-                <p class="card-text">Price: <%= product.price %> VND</p>
+            <a href="/product/<%= product._id%>">
+              <div class="card h-100">
+                <img src="/upload/<%= product.image %>" class="card-img-top" alt="<%= product.name %>">
+                <div class="card-body">
+                  <h5 class="card-title"><%= product.name %></h5>
+                  <p class="card-text">Price: <%= product.price %> VND</p>
+                </div>
+                <p class="card-text finance-info">Trả góp 0%</p>
               </div>
-              <p class="card-text finance-info">Trả góp 0%</p>
-            </div>
+            </a>
           </div>
           <% }); %>
         </div>
