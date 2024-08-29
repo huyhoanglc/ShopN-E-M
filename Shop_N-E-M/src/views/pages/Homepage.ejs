@@ -54,7 +54,7 @@
           <div class="swiper-slide">
             <a href="/product/<%= product._id%>">
               <div class="card h-100">
-                <img src="/upload/<%= product.image %>" class="card-img-top" alt="<%= product.name %>">
+                <img src="/upload/<%= product.image %>" class="card-img-top" alt="<%= product.name %>" style="height: 200px; object-fit: cover;">
                 <div class="card-body">
                   <h5 class="card-title"><%= product.name %></h5>
                   <p class="card-text">Price: <%= product.price %> VND</p>
