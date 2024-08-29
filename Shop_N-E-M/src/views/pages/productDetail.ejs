@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= product.name %> - Product Details</title>
+  <link rel="stylesheet" href="/styles.css"> <!-- Đảm bảo đường dẫn đến file CSS -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #fff;
+      padding: 20px;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #007bff;
+      margin-right: 20px;
+      font-size: 1rem;
+    }
+
+    main {
+      padding: 20px;
+      background-color: #fff;
+      max-width: 1200px;
+      margin: 20px auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-detail-container {
+      display: flex;
+      gap: 20px;
+    }
+
+    .product-image {
+      flex: 1;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .product-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-details {
+      flex: 2;
+      padding: 20px;
+    }
+
+    .product-title {
+      font-size: 2rem;
+      margin: 0 0 10px;
+      color: #333;
+    }
+
+    .product-price {
+      font-size: 2.5rem;
+      color: #e74c3c;
+      /* Màu đỏ cho giá */
+      margin: 10px 0;
+      font-weight: bold;
+    }
+
+    .product-quantity {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+    }
+
+    .product-quantity input {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .product-quantity .minus,
+    .product-quantity .plus {
+      cursor: pointer;
+      background-color: #eee;
+      border: none;
+      padding: 10px;
+    }
+
+    .product-quantity .qty {
+      width: 60px;
+    }
+
+    .cart_btn {
+      margin: 20px 0;
+    }
+
+    .btn-addtocart {
+      background-color: #e74c3c;
+      /* Màu nền đỏ cho nút "Add to cart" */
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .btn-addtocart:hover {
+      background-color: #c0392b;
+      /* Màu đỏ đậm hơn khi hover */
+    }
+
+    .cart_btn a {
+      text-decoration: none;
+      color: #333;
+      margin-right: 10px;
+    }
+
+    .cart_btn i {
+      font-size: 1.5rem;
+    }
+
+    .tab-style3 {
+      margin-top: 20px;
+    }
+
+    .nav-tabs {
+      border-bottom: 1px solid #ddd;
+    }
+
+    .nav-tabs .nav-link {
+      border: none;
+      font-size: 1rem;
+      padding: 10px 20px;
+    }
+
+    .nav-tabs .nav-link.active {
+      color: #007bff;
+      border-bottom: 2px solid #007bff;
+    }
+
+    .tab-content {
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+    }
+
+    .tab-content p {
+      margin: 0;
+    }
+
+    .large_divider {
+      height: 20px;
+      background-color: #f4f4f4;
+      margin: 20px 0;
+    }
+
+    .related-products {
+    padding: 20px;
+    background-color: #f9f9f9; /* Màu nền cho phần sản phẩm liên quan */
+    border-radius: 8px; /* Bo góc cho phần sản phẩm liên quan */
+}
+
+.related-products-container {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép các sản phẩm chuyển sang hàng mới nếu cần */
+    gap: 20px; /* Khoảng cách giữa các sản phẩm */
+    justify-content: center; /* Căn giữa các sản phẩm trong container */
+}
+
+.related-product-card {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+    width: 30%;
+    max-width: 500px; /* Kích thước tối đa của khung sản phẩm */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Thêm hiệu ứng bóng */
+}
+
+.related-product-image-wrapper {
+    flex: 1;
+    max-width: 250px; /* Tăng kích thước tối đa của hình ảnh */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.related-product-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.related-product-info {
+    flex: 2;
+    padding: 20px; /* Tăng padding */
+    font-size: 1rem; /* Tăng kích thước font */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Căn giữa nội dung */
+}
+
+.related-product-info h4 {
+    margin: 0 0 12px; /* Tăng margin dưới tiêu đề */
+    font-size: 1.2rem; /* Tăng kích thước font tiêu đề */
+}
+
+.related-product-info p {
+    margin: 6px 0; /* Tăng margin của các đoạn văn */
+    line-height: 1.5; /* Tăng khoảng cách giữa các dòng để dễ đọc hơn */
+}
+
+.view-product-link {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    margin-top: 10px; /* Khoảng cách trên để cách biệt liên kết với các phần tử khác */
+}
+
+.view-product-link:hover {
+    text-decoration: underline;
+}
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1><%= title %></h1>
+    <nav>
+      <a href="/">Home</a> |
+      <a href="/product">Products</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- START SECTION SHOP -->
+    <div class="product-detail-container">
+      <div class="product-image">
+        <% if (product.image) { %>
+        <img src="/upload/<%= product.image %>" alt="<%= product.name %>">
+        <% } %>
+      </div>
+      <div class="product-details">
+        <h2 class="product-title"><%= product.name %></h2>
+        <div class="product-price">
+          <%= product.price.toLocaleString('vi-VN', { style: 'currency' , currency: 'VND' }) %>
+        </div>
+        <div class="product-quantity">
+          <input type="button" value="-" class="minus">
+          <input type="text" name="quantity" value="1" class="qty" size="4">
+          <input type="button" value="+" class="plus">
+        </div>
+        <div class="cart_btn">
+          <a href="/user/add-to-cart/<%= product.id %>" class="btn-addtocart"><i class="icon-basket-loaded"></i> Add to cart</a>
+        </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="large_divider clearfix"></div>
+      </div>
+    </div>
+    <div class="tab-style3">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="Description-tab" data-bs-toggle="tab" href="#Description" role="tab" aria-controls="Description" aria-selected="true">Description</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="Description" role="tabpanel" aria-labelledby="Description-tab">
+          <p> <%= product.description %></p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+          <div class="large_divider clearfix"></div>
+        </div>
+    </div>
+
+    <div class="related-products-wrapper">
+        <% if (relatedProducts && relatedProducts.length > 0) { %>
+            <section class="related-products">
+                <h3>More products from this brand</h3>
+                <div class="related-products-container">
+                    <% relatedProducts.forEach(function(relatedProduct) { %>
+                        <div class="related-product-card">
+                            <div class="related-product-image-wrapper">
+                                <% if (relatedProduct.image) { %>
+                                    <img src="/upload/<%= relatedProduct.image %>" alt="<%= relatedProduct.name %>" class="related-product-image">
+                                <% } %>
+                            </div>
+                            <div class="related-product-info">
+                                <h4><%= relatedProduct.name %></h4>
+                                <p><strong>Price:</strong><%= relatedProduct.price.toLocaleString('vi-VN', { style: 'currency' , currency: 'VND' }) %></p>
+                                <a href="/product/<%= relatedProduct._id %>" class="view-product-link">View Details</a>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            </section>
+        <% } else { %>
+            <section class="related-products">
+                <h3>No other products from this brand.</h3>
+            </section>
+        <% } %>
+    </div>
+
+    
+    <!-- END SECTION SHOP -->
+  </main>
+</body>
+
+
+</html>
