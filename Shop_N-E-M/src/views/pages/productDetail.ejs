@@ -259,15 +259,6 @@
 </head>
 
 <body>
-  <header>
-    <h1><%= title %></h1>
-
-    <nav>
-      <a href="/">Home</a> |
-      <a href="/product">Products</a>
-    </nav>
-
-  </header>
 
   <main>
     <!-- START SECTION SHOP -->
@@ -281,12 +272,6 @@
         <h2 class="product-title"><%= product.name %></h2>
         <div class="product-price">
           <%= product.price.toLocaleString('vi-VN', { style: 'currency' , currency: 'VND' }) %>
-          $<%= product.price %>
-        </div>
-        <div class="product-quantity">
-          <input type="button" value="-" class="minus">
-          <input type="text" name="quantity" value="1" class="qty" size="4">
-          <input type="button" value="+" class="plus">
         </div>
         <div class="cart_btn">
           <% if(userData) { %>

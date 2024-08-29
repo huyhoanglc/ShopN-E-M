@@ -12,8 +12,10 @@
         <div class="col-md-5 col-sm-12">
           <form class="subscription-form validate" action="/product" method="post">
             <div class="input-group flex-wrap">
-              <input class="form-control btn-rounded-none" type="searchValue" name="searchValue" placeholder="Bạn cần tìm gì ?">
-              <button class="btn btn-medium btn-primary text-uppercase btn-rounded-none" type="submit" name="subscribe">Search</button>
+              <input class="form-control btn-rounded-none" type="searchValue" name="searchValue"
+                placeholder="Bạn cần tìm gì ?">
+              <button class="btn btn-medium btn-primary text-uppercase btn-rounded-none" type="submit"
+                name="subscribe">Search</button>
             </div>
           </form>
         </div>
@@ -26,10 +28,12 @@
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav" style="display: flex; justify-content: space-between; width: 100%; font-size: 18px;">
-        <% brands.map(brand => { %>
-        <li class="nav-item"><a class="nav-link" href="/product/brand/<%= brand._id%>"><%= brand.name %></a></li>
-        <% }) %>
-        <!-- Thêm các mục khác tương tự -->
+        <% brands.map(brand=> { %>
+          <li class="nav-item"><a class="nav-link" href="/product/brand/<%= brand._id%>">
+              <%= brand.name %>
+            </a></li>
+          <% }) %>
+            <!-- Thêm các mục khác tương tự -->
       </ul>
     </div>
   </div>
@@ -82,25 +86,28 @@
 </div>
 <main>
   <div class="product-container">
-    <% products.forEach(product => { %>
-    <div class="product-card">
-      <% if (product.image) { %>
-      <div class="product-image-wrapper">
-        <a href="/product/<%= product._id %>">
-          <img src="/upload/<%= product.image %>" alt="<%= product.name %>" class="product-image">
-        </a>
+    <% products.forEach(product=> { %>
+      <div class="product-card">
+        <% if (product.image) { %>
+          <div class="product-image-wrapper">
+            <a href="/product/<%= product._id %>">
+              <img src="/upload/<%= product.image %>" alt="<%= product.name %>" class="product-image">
+            </a>
+          </div>
+          <% } %>
+            <div class="product-details">
+              <a href="/product/<%= product._id %>">
+                <h3>
+                  <%= product.name %>
+                </h3>
+              </a>
+
+              <p><strong>Price:</strong>
+                <%= product.price.toLocaleString('vi-VN', { style: 'currency' , currency: 'VND' }) %>
+              </p>
+            </div>
       </div>
-      <% } %>
-      <div class="product-details">
-        <a href="/product/<%= product._id %>">
-          <h3><%= product.name %></h3>
-        </a>
-        <p><strong>Price:</strong> <%= product.price.toLocaleString('vi-VN', { style: 'currency' , currency: 'VND' }) %></p>
-        <p><strong>Price:</strong> $<%= product.price %></p>
-        <p><strong>Quantity:</strong> <%= product.quantity %></p>
-      </div>
-    </div>
-    <% }) %>
+      <% }) %>
   </div>
 </main>
 
