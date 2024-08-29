@@ -283,6 +283,8 @@
 
           <%= product.price.toLocaleString('vi-VN', { style: 'currency' , currency: 'VND' }) %>
 
+
+
         </div>
         <div class="product-quantity">
           <input type="button" value="-" class="minus">
@@ -291,7 +293,6 @@
         </div>
         <div class="cart_btn">
 
-          <a href="/user/add-to-cart/<%= product.id %>" class="btn-addtocart"><i class="icon-basket-loaded"></i> Add to cart</a>
 
           <% if(userData) { %>
           <a href="/user/add-to-cart/<%= product.id %>" class="btn-addtocart"><i class="icon-basket-loaded"></i> Add to cart</a>
