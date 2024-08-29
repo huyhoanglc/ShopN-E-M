@@ -8,21 +8,14 @@ export const getHomePage = async (req, res) => {
         const brands = await Brands.find();
 
         const query = brand ? { brand } : {};
-        const products = await Products.find(query);
+        const products = await Products.find(query).sort({ views: -1 }).limit(10);
 
         const saleEndDate = new Date('2024-09-01T00:00:00').getTime();
-
-        function getRandomProducts(products, count) {
-            return products.sort(() => 0.5 - Math.random()).slice(0, count);
-          }
-          
-          const randomproducts = getRandomProducts(products, 10);
         res.render('pages/Homepage', {
             title: "Homepage",
             products,
             saleEndDate,
-            brands,
-            randomproducts: randomproducts
+            brands
         });
     } catch (error) {
         console.error('Error loading homepage:', error);
