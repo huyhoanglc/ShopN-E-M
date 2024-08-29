@@ -182,7 +182,7 @@
       <div class="col">
         <a href="/product/<%= product._id %>">
           <div class="card h-100">
-            <img src="/upload/<%= product.image %>" alt="<%= product.name %>" class="product-image">
+            <img src="/upload/<%= product.image %>" style="height: 300px; object-fit: cover;" alt="<%= product.name %>" class="product-image">
 
             <div class="card-body">
               <h5 class="card-title"><%= product.name %></h5>
