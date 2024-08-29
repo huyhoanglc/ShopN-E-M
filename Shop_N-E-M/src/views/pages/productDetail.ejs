@@ -176,10 +176,6 @@
 <body>
   <header>
     <h1><%= title %></h1>
-    <nav>
-      <a href="/">Home</a> |
-      <a href="/product">Products</a>
-    </nav>
   </header>
 
   <main>
@@ -201,7 +197,12 @@
           <input type="button" value="+" class="plus">
         </div>
         <div class="cart_btn">
-          <a href="/user/add-to-cart/<%= product.id %>" class="btn-addtocart"><i class="icon-basket-loaded"></i> Add to cart</a>
+          <% if(userData) { %>
+            <a href="/user/add-to-cart/<%= product.id %>" class="btn-addtocart"><i class="icon-basket-loaded"></i> Add to cart</a>
+          <% } %>
+          <% if(!userData) { %>
+            <a href="" class="btn-addtocart"><i class="icon-basket-loaded"></i> Add to cart</a>
+          <% } %>
         </div>
 
       </div>

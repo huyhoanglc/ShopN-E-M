@@ -9,5 +9,7 @@ userRouter.post('/cart-update-quantity/:id', ctrl.cartUpdateQuantity)
 userRouter.get('/delete-to-cart/:id', ctrl.deleteToCart)
 userRouter.post('/update/:id', ctrl.updateUser)
 userRouter.post('/delete/:id', ctrl.deleteUser)
+userRouter.get('/security', ctrl.getSecurityPage)
+userRouter.post('/security/change-password', ctrl.changePassword)
 
 export default userRouter
