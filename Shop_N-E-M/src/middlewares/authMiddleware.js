@@ -1,6 +1,17 @@
 import jwt from 'jsonwebtoken'
 import generateToken from '../config/jsonwebtoken.js'
 import Users from '../models/userModel.js'
+import Carts from '../models/cartModel.js'
+
+const totalProductsInCart = (products) => {
+    let total = 0
+    if(products && products.length > 0) {
+        products.forEach((product) => {
+            total += product.quantity
+        })
+    }
+    return total
+}
 
 export const authMiddleware = (req, res, next) => {
     try {
@@ -22,10 +33,13 @@ export const authMiddleware = (req, res, next) => {
                     }
 
                     const userData = await Users.findOne({ _id: userId }).select("username email phone role createdAt updatedAt")
+                    const cart = await Carts.findOne({ userId: userId })
+
                     req.body.userData = userData
 
                     res.render = function (view, options = {}, callback) {
                         options.userData = userData || null
+                        options.totalProductsInCart = cart ? totalProductsInCart(cart.products) : 0
                         return originalRender.call(this, view, options, callback)
                     }
 

@@ -42,7 +42,7 @@ class controllers {
                     $limit: perPage
                 },
                 { $sort: { name: 1 } },
-                
+
             ]
         )
 
@@ -135,8 +135,14 @@ class controllers {
                     $limit: perPage
                 },
                 { $sort: { name: 1 } },
-                
+
             ]
+        )
+
+        await Promise.all(
+            brands.map(async (brand) => {
+                brand.totalProducts = await Products.countDocuments({ brand: brand._id })
+            })
         )
 
         const count = await Brands.countDocuments()
@@ -160,6 +166,12 @@ class controllers {
             .skip((page - 1) * perPage)
             .limit(perPage)
             .exec()
+
+        await Promise.all(
+            brands.map(async (brand) => {
+                brand.totalProducts = await Products.countDocuments({ brand: brand._id })
+            })
+        )
 
         const count = await Brands.countDocuments()
 
@@ -260,7 +272,7 @@ class controllers {
         }
     }
 
-    
+
 
     getBrandDetailManagementPage = async (req, res) => {
         const { id } = req.params
@@ -390,8 +402,14 @@ class controllers {
                     $limit: perPage
                 },
                 { $sort: { name: 1 } },
-                
+
             ]
+        )
+
+        await Promise.all(
+            categorys.map(async (category) => {
+                category.totalProducts = await Products.countDocuments({ category: category._id })
+            })
         )
 
         const count = await Categorys.countDocuments()
@@ -415,6 +433,12 @@ class controllers {
             .skip((page - 1) * perPage)
             .limit(perPage)
             .exec()
+
+        await Promise.all(
+            categorys.map(async (category) => {
+                category.totalProducts = await Products.countDocuments({ category: category._id })
+            })
+        )
 
         const count = await Categorys.countDocuments()
 
@@ -642,7 +666,7 @@ class controllers {
                     $limit: perPage
                 },
                 { $sort: { name: 1 } },
-                
+
             ]
         )
 

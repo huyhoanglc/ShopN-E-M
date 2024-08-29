@@ -1,0 +1,69 @@
+<div style="display: flex;
+    user-select: none;
+    width: 100%;
+    padding-top: 7px;
+    font-weight: bold;
+    justify-content:
+    space-between;
+    align-items:
+    center;">
+    <span>
+        CHANGE PASSWORD
+    </span>
+</div>
+
+<form action="/user/security/change-password" method="post"
+    style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+    <div class="mb-1 mt-3" style="width: 100%; user-select: none;">
+        <label for="password" class="form-label" style="font-weight: bold; font-size: 14px;">
+            Password:
+        </label>
+        <input type="password" class="form-control" id="password" name="password" autocomplete="off">
+    </div>
+    <div class="mb-3 mt-3" style="width: 100%; user-select: none;">
+        <label for="newPassword" class="form-label" style="font-weight: bold; font-size: 14px;">
+            New password:
+        </label>
+        <input type="password" class="form-control" id="newPassword" name="newPassword" autocomplete="off">
+    </div>
+    <div class="mb-4 mt-3" style="width: 100%; user-select: none;">
+        <label for="confirmNewPassword" class="form-label" style="font-weight: bold; font-size: 14px;">
+            Confirm new password:
+        </label>
+        <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword"
+            autocomplete="off">
+    </div>
+    <button type="submit" class="btn btn-dark mb-3" style="width: 100%;">
+        Change password
+    </button>
+</form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var myModal = new bootstrap.Modal(document.getElementById('modalError'))
+        myModal.show()
+    })
+</script>
+<% if(errors) { %>
+    <div class="modal" id="modalError">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header bg-dark" style="color: #fff; display: flex; justify-content: space-between;">
+                    <h4 class="modal-title">ERROR</h4>
+                    <a class="btn" data-bs-dismiss="modal">
+                        <i class="bi bi-x-lg" style="color: #fff; font-size: 20px;"></i>
+                    </a>
+                </div>
+
+                <div class="modal-body" style="display: flex;
+                flex-direction: column;
+                min-height: 150px;
+                justify-content: center;">
+                    - <%= errors %>
+                </div>
+
+            </div>
+        </div>
+    </div>
+<% } %>

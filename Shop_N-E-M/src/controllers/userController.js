@@ -121,11 +121,25 @@ class controllers {
 
         const cart = await Carts.findOne({ userId: userData._id })
 
-        res.render('pages/user/Cart', {
-            title: 'Shopping Cart',
-            products: cart.products ? cart.products : [],
-            totalPrice: totalPrice(cart)
-        })
+        if (!cart) {
+            const newCart = new Carts({
+                userId: userData._id,
+                products: []
+            })
+            await newCart.save()
+
+            res.render('pages/user/Cart', {
+                title: 'Shopping Cart',
+                products: newCart.products,
+                totalPrice: totalPrice(newCart)
+            })
+        } else {
+            res.render('pages/user/Cart', {
+                title: 'Shopping Cart',
+                products: cart.products,
+                totalPrice: totalPrice(cart)
+            })
+        }
     }
 
     addToCart = async (req, res) => {
@@ -166,7 +180,7 @@ class controllers {
             await Carts.findByIdAndUpdate(checkCart._id, { products: products })
         }
 
-        res.redirect("/user/cart")
+        res.redirect(`/product/${id}`)
     }
 
     deleteToCart = async (req, res) => {
@@ -202,6 +216,52 @@ class controllers {
             await Carts.findByIdAndUpdate(cart._id, { products: products }, { new: true })
 
             res.redirect("/user/cart")
+        }
+    }
+
+    // Security
+    getSecurityPage = async (req, res) => {
+        const { userData } = req.body
+        res.render("pages/user/Security", {
+            title: "Security",
+            errors: ""
+        })
+    }
+
+    changePassword = async (req, res) => {
+        const { userData } = req.body
+        const user = await Users.findById(userData._id)
+        const { password, newPassword, confirmNewPassword } = req.body
+
+        let errors
+
+        if (!password || !newPassword || !confirmNewPassword) {
+            errors = "All fields are required."
+        } else {
+            const checkPassword = await bcrypt.compareSync(password, user.password)
+
+            if (!checkPassword) {
+                errors = "Invalid password."
+
+            } else {
+                if (newPassword !== confirmNewPassword) {
+                    errors = "Passwords do not match."
+
+                } else {
+                    const hashedPassword = await bcrypt.hash(newPassword, 10)
+                    await Users.findByIdAndUpdate(userData._id, { password: hashedPassword })
+
+                }
+            }
+        }
+
+        if (errors) {
+            res.render("pages/user/Security", {
+                title: "Security",
+                errors: errors
+            })
+        } else {
+            res.redirect("/user")
         }
     }
 }
