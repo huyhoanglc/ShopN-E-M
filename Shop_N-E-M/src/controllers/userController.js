@@ -238,19 +238,23 @@ class controllers {
         if (!password || !newPassword || !confirmNewPassword) {
             errors = "All fields are required."
         } else {
-            const checkPassword = await bcrypt.compareSync(password, user.password)
-
-            if (!checkPassword) {
-                errors = "Invalid password."
-
+            if (newPassword === password) {
+                errors = "New password cannot be the same as the current password."
             } else {
-                if (newPassword !== confirmNewPassword) {
-                    errors = "Passwords do not match."
+                const checkPassword = await bcrypt.compareSync(password, user.password)
+
+                if (!checkPassword) {
+                    errors = "Invalid password."
 
                 } else {
-                    const hashedPassword = await bcrypt.hash(newPassword, 10)
-                    await Users.findByIdAndUpdate(userData._id, { password: hashedPassword })
+                    if (newPassword !== confirmNewPassword) {
+                        errors = "Passwords do not match."
 
+                    } else {
+                        const hashedPassword = await bcrypt.hash(newPassword, 10)
+                        await Users.findByIdAndUpdate(userData._id, { password: hashedPassword })
+
+                    }
                 }
             }
         }
