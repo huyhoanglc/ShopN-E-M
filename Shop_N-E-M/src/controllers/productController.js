@@ -38,6 +38,7 @@ export const getProductDetail = async (req, res) => {
             return res.status(404).render('404', { title: 'Product Not Found' });
         }
 
+
         // Lấy danh sách các sản phẩm cùng thương hiệu (trừ sản phẩm hiện tại)
         const relatedProducts = await Products.find({
             brand: product.brand,
@@ -49,6 +50,9 @@ export const getProductDetail = async (req, res) => {
             product,
             relatedProducts
         });
+
+        res.render('pages/Productdetail', { title: product.name, product });
+
     } catch (err) {
         console.error(err);
         res.status(500).send('Server Error');

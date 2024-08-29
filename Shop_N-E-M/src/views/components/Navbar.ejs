@@ -2,7 +2,7 @@
     position: fixed;
     display: flex;
     width: 100%;
-    height: 60px;
+    height: 70px;
     background-color: #fff;
     justify-content: center;
     align-items: center;
@@ -24,8 +24,12 @@
             <a href="/">
                 <img src="/images/logo/logo.png" alt="logo" width="106px" height="40px">
             </a>
+            <a class="btn" href="/">
+                <img src="/images/Gif/LogoGif.gif" alt="gif" width="50" height="50"
+                    style="object-fit: cover;  border-radius: 50%">
+            </a>
             <div class="d-none d-lg-flex" style="padding: 20px; align-items: center;">
-                <a class="btn" href="">
+                <a class="btn" href="/product">
                     Products
                 </a>
                 <a class="btn" href="">
@@ -38,11 +42,20 @@
         </div>
 
         <!-- Right -->
-        <div style="display: flex; align-items: center;">
-            <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"
-                style="color: #000; text-decoration: none;">
-                <i class="bi bi-three-dots-vertical" style="font-size: 20px;"></i>
-            </a>
+        <div style="display: flex; align-items: center; gap: 20px">
+            <% if(userData) { %>
+                <div style="display: flex; align-items: center;">
+                    <a href="/user/cart" style="color: #000; text-decoration: none;">
+                        <i class="bi bi-cart3" style="font-size: 20px;"></i><%= totalProductsInCart %>
+                    </a>
+                </div>
+            <% } %>
+            <div style="display: flex; align-items: center;">
+                <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"
+                    style="color: #000; text-decoration: none;">
+                    <i class="bi bi-three-dots-vertical" style="font-size: 20px;"></i>
+                </a>
+            </div>
         </div>
     </div>
 </div>
@@ -56,7 +69,8 @@
     </div>
     <div class="offcanvas-body"
         style="display: flex; flex-direction: column; align-items: center; padding: 5px 30px; gap: 10px;">
-        <div class="d-flex d-lg-none" style="flex-direction: column; align-items: center; padding: 5px 30px; gap: 10px; width: 100%;">
+        <div class="d-flex d-lg-none"
+            style="flex-direction: column; align-items: center; padding: 5px 30px; gap: 10px; width: 100%;">
             <a href="/" class="btn" style="color: #000; width: 100%; text-align: center;">
                 Homepage
             </a>
@@ -70,7 +84,7 @@
                 style="color: #000; width: 100%; text-align: center;">
                 Fanpage
             </a>
-    
+
             <hr style="color: #c3c3c3; width:60%; height: 1px;">
         </div>
 
@@ -89,8 +103,7 @@
                         </span>
                     </a>
                     <% if(userData.role==='admin' ) { %>
-                        <a href="/management" class="btn"
-                            style="color: #000; width: 100%; text-align: center;">
+                        <a href="/management" class="btn" style="color: #000; width: 100%; text-align: center;">
                             Management
                         </a>
                         <% } %>

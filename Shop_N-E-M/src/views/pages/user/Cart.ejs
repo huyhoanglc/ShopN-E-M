@@ -1,0 +1,76 @@
+<div style="display: flex;
+    user-select: none;
+    width: 100%;
+    padding-top: 7px;
+    font-weight: bold;
+    justify-content:
+    space-between;
+    align-items:
+    center;">
+    <span>
+        Shopping Cart
+    </span>
+</div>
+
+<div style="height: 5px;"></div>
+
+<table class="table" style="text-align: center; user-select: none;">
+    <thead>
+        <tr>
+            <th style="text-align: left;">Name</th>
+            <th style="text-align: center;">Image</th>
+            <th style="text-align: center;">Price</th>
+            <th style="text-align: center;">Quantity</th>
+            <th style="text-align: right;">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% products.forEach(product=> { %>
+            <tr>
+                <td style="text-align: left; font-size: 15px; vertical-align: middle;">
+                    <%= product.name %>
+                </td>
+                <td style="text-align: center; font-size: 15px; vertical-align: middle;">
+                    <img src="/upload/<%= product.image %>" alt="<%= product.name %>" width="" height="80px">
+                </td>
+                <td style="text-align: center; font-size: 15px; vertical-align: middle;">
+                    <%= product.price.toLocaleString('vi-VN', { style: 'currency' , currency: 'VND' }) %>
+                </td>
+                <td style="text-align: center; font-size: 15px; vertical-align: middle;">
+                    <form action="/user/cart-update-quantity/<%= product.id %>" method="post">
+                        <input style="width: 80px; text-align: center; background-color: transparent; border: 0px;"
+                            type="number"
+                            id="quantity"
+                            name="quantity"
+                            value="<%= product.quantity %>">
+                    </form>
+                </td>
+                <td style="text-align: right; font-size: 15px; vertical-align: middle;">
+                    <a class="btn btn-success" href="/product/<%= product.id %>">
+                        <i class="bi bi-eye-fill"></i>
+                    </a>
+                    <a class="btn btn-danger" href="/user/delete-to-cart/<%= product.id %>">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            <% }) %>
+                <% if (products.length===0) { %>
+                    <tr>
+                        <td colspan="5" style="font-size: 15px; height: 200px;">
+                            <span
+                                style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                                No data
+                            </span>
+                        </td>
+                    </tr>
+                    <% } %>
+    </tbody>
+</table>
+
+<div
+    style="width: 100%; display: flex; justify-content: end; align-items: center; gap: 10px; user-select: none; padding-top: 10px;">
+    <h5>Total:</h5><span>
+        <%= totalPrice.toLocaleString('vi-VN', { style: 'currency' , currency: 'VND' }) %>
+    </span>
+</div>

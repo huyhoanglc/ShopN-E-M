@@ -18,6 +18,7 @@
     <tr>
       <th style="text-align: left;">Name</th>
       <th>Image</th>
+      <th>Total products</th>
       <th style="text-align: right;">Action</th>
     </tr>
   </thead>
@@ -29,6 +30,9 @@
       </td>
       <td>
         <img src="/upload/<%= brand.image %>" alt="<%= brand.name %>" width="max-width" height="50px">
+      </td>
+      <td>
+        <%= brand.totalProducts %>
       </td>
       <td style="text-align: right;">
         <a class="btn btn-success" href="/management/brand/<%= brand._id %>">

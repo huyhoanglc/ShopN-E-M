@@ -171,6 +171,7 @@
       margin: 20px 0;
     }
 
+
     .related-products {
     padding: 20px;
     background-color: #f9f9f9; /* Màu nền cho phần sản phẩm liên quan */
@@ -238,16 +239,19 @@
 .view-product-link:hover {
     text-decoration: underline;
 }
+
   </style>
 </head>
 
 <body>
   <header>
     <h1><%= title %></h1>
+
     <nav>
       <a href="/">Home</a> |
       <a href="/product">Products</a>
     </nav>
+
   </header>
 
   <main>
@@ -261,7 +265,11 @@
       <div class="product-details">
         <h2 class="product-title"><%= product.name %></h2>
         <div class="product-price">
+
           <%= product.price.toLocaleString('vi-VN', { style: 'currency' , currency: 'VND' }) %>
+
+          $<%= product.price %>
+
         </div>
         <div class="product-quantity">
           <input type="button" value="-" class="minus">
@@ -269,7 +277,16 @@
           <input type="button" value="+" class="plus">
         </div>
         <div class="cart_btn">
+
           <a href="/user/add-to-cart/<%= product.id %>" class="btn-addtocart"><i class="icon-basket-loaded"></i> Add to cart</a>
+
+          <% if(userData) { %>
+            <a href="/user/add-to-cart/<%= product.id %>" class="btn-addtocart"><i class="icon-basket-loaded"></i> Add to cart</a>
+          <% } %>
+          <% if(!userData) { %>
+            <a href="" class="btn-addtocart"><i class="icon-basket-loaded"></i> Add to cart</a>
+          <% } %>
+
         </div>
 
       </div>
@@ -291,6 +308,7 @@
         </div>
       </div>
     </div>
+
     <div class="row">
         <div class="col-12">
           <div class="large_divider clearfix"></div>
@@ -326,6 +344,7 @@
     </div>
 
     
+
     <!-- END SECTION SHOP -->
   </main>
 </body>
