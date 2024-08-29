@@ -19,7 +19,7 @@ const START_APP = () => {
     app.set("layout", "layouts/main")
     app.set("view engine", "ejs")
     app.set("views", "src/views")
-
+    app.use('/node_modules', express.static('node_modules'));
     app.listen(port, () => {
         console.log(`App is running on: http://localhost:${port}`)
         console.log('-------------------------------')
