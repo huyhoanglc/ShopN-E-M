@@ -105,8 +105,12 @@
                         <a href="/product/<%= product._id %>">
                             <h3><%= product.name %></h3>
                         </a>
+
+                        <p><strong>Price:</strong> <%= product.price.toLocaleString('vi-VN', { style: 'currency' , currency: 'VND' }) %></p>
+
                         <p><strong>Price:</strong> $<%= product.price %></p>
                         <p><strong>Description:</strong> <%= product.description %></p>
+
                         <p><strong>Quantity:</strong> <%= product.quantity %></p>
                     </div>
                 </div>

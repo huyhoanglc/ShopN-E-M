@@ -170,12 +170,88 @@
       background-color: #f4f4f4;
       margin: 20px 0;
     }
+
+
+    .related-products {
+    padding: 20px;
+    background-color: #f9f9f9; /* Màu nền cho phần sản phẩm liên quan */
+    border-radius: 8px; /* Bo góc cho phần sản phẩm liên quan */
+}
+
+.related-products-container {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép các sản phẩm chuyển sang hàng mới nếu cần */
+    gap: 20px; /* Khoảng cách giữa các sản phẩm */
+    justify-content: center; /* Căn giữa các sản phẩm trong container */
+}
+
+.related-product-card {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+    width: 30%;
+    max-width: 500px; /* Kích thước tối đa của khung sản phẩm */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Thêm hiệu ứng bóng */
+}
+
+.related-product-image-wrapper {
+    flex: 1;
+    max-width: 250px; /* Tăng kích thước tối đa của hình ảnh */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.related-product-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.related-product-info {
+    flex: 2;
+    padding: 20px; /* Tăng padding */
+    font-size: 1rem; /* Tăng kích thước font */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Căn giữa nội dung */
+}
+
+.related-product-info h4 {
+    margin: 0 0 12px; /* Tăng margin dưới tiêu đề */
+    font-size: 1.2rem; /* Tăng kích thước font tiêu đề */
+}
+
+.related-product-info p {
+    margin: 6px 0; /* Tăng margin của các đoạn văn */
+    line-height: 1.5; /* Tăng khoảng cách giữa các dòng để dễ đọc hơn */
+}
+
+.view-product-link {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    margin-top: 10px; /* Khoảng cách trên để cách biệt liên kết với các phần tử khác */
+}
+
+.view-product-link:hover {
+    text-decoration: underline;
+}
+
   </style>
 </head>
 
 <body>
   <header>
     <h1><%= title %></h1>
+
+    <nav>
+      <a href="/">Home</a> |
+      <a href="/product">Products</a>
+    </nav>
+
   </header>
 
   <main>
@@ -189,7 +265,11 @@
       <div class="product-details">
         <h2 class="product-title"><%= product.name %></h2>
         <div class="product-price">
+
+          <%= product.price.toLocaleString('vi-VN', { style: 'currency' , currency: 'VND' }) %>
+
           $<%= product.price %>
+
         </div>
         <div class="product-quantity">
           <input type="button" value="-" class="minus">
@@ -197,12 +277,16 @@
           <input type="button" value="+" class="plus">
         </div>
         <div class="cart_btn">
+
+          <a href="/user/add-to-cart/<%= product.id %>" class="btn-addtocart"><i class="icon-basket-loaded"></i> Add to cart</a>
+
           <% if(userData) { %>
             <a href="/user/add-to-cart/<%= product.id %>" class="btn-addtocart"><i class="icon-basket-loaded"></i> Add to cart</a>
           <% } %>
           <% if(!userData) { %>
             <a href="" class="btn-addtocart"><i class="icon-basket-loaded"></i> Add to cart</a>
           <% } %>
+
         </div>
 
       </div>
@@ -224,6 +308,43 @@
         </div>
       </div>
     </div>
+
+    <div class="row">
+        <div class="col-12">
+          <div class="large_divider clearfix"></div>
+        </div>
+    </div>
+
+    <div class="related-products-wrapper">
+        <% if (relatedProducts && relatedProducts.length > 0) { %>
+            <section class="related-products">
+                <h3>More products from this brand</h3>
+                <div class="related-products-container">
+                    <% relatedProducts.forEach(function(relatedProduct) { %>
+                        <div class="related-product-card">
+                            <div class="related-product-image-wrapper">
+                                <% if (relatedProduct.image) { %>
+                                    <img src="/upload/<%= relatedProduct.image %>" alt="<%= relatedProduct.name %>" class="related-product-image">
+                                <% } %>
+                            </div>
+                            <div class="related-product-info">
+                                <h4><%= relatedProduct.name %></h4>
+                                <p><strong>Price:</strong><%= relatedProduct.price.toLocaleString('vi-VN', { style: 'currency' , currency: 'VND' }) %></p>
+                                <a href="/product/<%= relatedProduct._id %>" class="view-product-link">View Details</a>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            </section>
+        <% } else { %>
+            <section class="related-products">
+                <h3>No other products from this brand.</h3>
+            </section>
+        <% } %>
+    </div>
+
+    
+
     <!-- END SECTION SHOP -->
   </main>
 </body>
