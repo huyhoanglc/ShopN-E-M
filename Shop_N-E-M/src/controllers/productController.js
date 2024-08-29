@@ -49,9 +49,7 @@ export const getProductDetail = async (req, res) => {
             title: product.name,
             product,
             relatedProducts
-        });
-
-        res.render('pages/Productdetail', { title: product.name, product });
+        })
 
     } catch (err) {
         console.error(err);
