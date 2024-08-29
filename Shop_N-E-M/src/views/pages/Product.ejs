@@ -174,35 +174,29 @@
 
 
 
-
-<main>
-    <div class="product-container">
-            <% products.forEach(product => { %>
-                <div class="product-card">
-                    <% if (product.image) { %>
-                        <div class="product-image-wrapper">
-                            <a href="/product/<%= product._id %>">
-                                <img src="/upload/<%= product.image %>" alt="<%= product.name %>" class="product-image">
-                            </a>
-                        </div>
-                    <% } %>
-                    <div class="product-details">
-                        <a href="/product/<%= product._id %>">
-                            <h3><%= product.name %></h3>
-                        </a>
-                        <p><strong>Price:</strong> $<%= product.price %></p>
-                        <p><strong>Description:</strong> <%= product.description %></p>
-                        <p><strong>Quantity:</strong> <%= product.quantity %></p>
-                    </div>
-                </div>
-            <% }) %>
+<!-- Products -->
+<div class="block-featured-product container">
+    <div class="product-list">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5 g-4">
+        <% products.forEach(product => { %>
+        <div class="col">
+          <div class="card h-100">
+            <a href="/product/<%= product._id %>">
+                <img src="/upload/<%= product.image %>" alt="<%= product.name %>" class="product-image">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title"><%= product.name %></h5>
+              <p class="card-text">Price: <%= product.price %> VND</p>
+            </div>
+            <p class="card-text finance-info">Trả góp 0%</p>
+          </div>
+        </div>
+        <% }); %>
+      </div>
     </div>
     <!-- !!! -->
   </div>
   <!-- End Products -->
-
-
-
 
     <!-- blog -->
     <section id="latest-blog" class="padding-large">
