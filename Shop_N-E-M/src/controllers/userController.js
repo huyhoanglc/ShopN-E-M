@@ -166,13 +166,7 @@ class controllers {
             await Carts.findByIdAndUpdate(checkCart._id, { products: products })
         }
 
-        const cart = await Carts.findOne({ userId: userId })
-
-        res.render('pages/user/Cart', {
-            title: 'Shopping Cart',
-            products: cart.products ? cart.products : [],
-            totalPrice: totalPrice(cart)
-        })
+        res.redirect("/user/cart")
     }
 
     deleteToCart = async (req, res) => {
@@ -183,13 +177,9 @@ class controllers {
         const cart = await Carts.findOne({ userId: userId })
         const products = cart.products.filter(product => product.id != id)
 
-        const newCart = await Carts.findByIdAndUpdate(cart._id, { products: products }, { new: true })
+        await Carts.findByIdAndUpdate(cart._id, { products: products }, { new: true })
 
-        res.render('pages/user/Cart', {
-            title: 'Shopping Cart',
-            products: newCart.products ? newCart.products : [],
-            totalPrice: totalPrice(newCart)
-        })
+        res.redirect("/user/cart")
     }
 
     cartUpdateQuantity = async (req, res) => {
@@ -200,11 +190,7 @@ class controllers {
         const cart = await Carts.findOne({ userId: userId })
 
         if (!quantity || quantity < 0) {
-            res.render('pages/user/Cart', {
-                title: 'Shopping Cart',
-                products: cart.products ? cart.products : [],
-                totalPrice: totalPrice(cart)
-            })
+            res.redirect("/user/cart")
         } else {
             const products = cart.products.map(product => {
                 if (product.id === id) {
@@ -213,13 +199,9 @@ class controllers {
                 return product
             })
 
-            const newCart = await Carts.findByIdAndUpdate(cart._id, { products: products }, { new: true })
+            await Carts.findByIdAndUpdate(cart._id, { products: products }, { new: true })
 
-            res.render('pages/user/Cart', {
-                title: 'Shopping Cart',
-                products: newCart.products ? newCart.products : [],
-                totalPrice: totalPrice(newCart)
-            })
+            res.redirect("/user/cart")
         }
     }
 }
