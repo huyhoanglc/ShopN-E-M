@@ -6,6 +6,7 @@ import { redirectIfAuth, userPageRedirectIfNotAuth } from '../middlewares/authMi
 import managementRouter from './managementRouter.js'
 import userRouter from './userRouter.js'
 import { managementMiddleware } from '../middlewares/managementMiddleware.js'
+import { getAboutusPage } from '../controllers/aboutusController.js'
 const rootRouter = express.Router()
 
 rootRouter.get('/', getHomePage)
@@ -17,5 +18,5 @@ rootRouter.get('/product/brand/:id' ,getProductByBrand);
 rootRouter.use('/auth', redirectIfAuth, authRouter)
 rootRouter.use('/management', managementMiddleware, managementRouter)
 rootRouter.use('/user', userPageRedirectIfNotAuth, userRouter)
-
+rootRouter.get('/aboutus', getAboutusPage);
 export default rootRouter

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    
+</head>
+
+<body>
+    <div className="Aboutus">
+        <div className="bgvideo">
+            <video className="" muted loop playsInline autoPlay id="mybgvideo" style=" width: 100%; height: 100%; object-fit: cover;">
+                <source src="/video/Logo.mp4" type="video/mp4" />
+            </video>
+        </div>
+
+
+        <div className="maincontent ">
+
+            <div className="container bg-light">
+                <div class="row">
+                    <div class="container">
+                        <div class="row justify-content-between align-items-lg-center mt-5" data-aos="fade-up"
+                            data-aos-delay="300">
+                            <div class="col-lg-6 mb-4 mb-lg-0">
+
+                                <h2 class="display-6 mb-4">About Us</h2>
+                                <p>Welcome to our smartphone store,
+                                    your premier destination for cutting-edge technology.
+                                    Founded in 2024, we are dedicated to bringing you the latest and most advanced
+                                    smartphones available.
+                                    From top-tier global brands to exclusive, innovative models,
+                                    our selection is curated to meet the diverse needs of technology enthusiasts and
+                                    everyday users alike.
+                                    Our commitment to quality ensures that you receive only genuine products that meet
+                                    the highest standards.</p>
+                                <p>At our store,
+                                    we prioritize your satisfaction by offering exceptional customer service and
+                                    comprehensive after-sales support.
+                                    We understand that choosing the right device is a significant decision,
+                                    and our knowledgeable team is here to guide you every step of the way.
+                                    Whether you're looking for the latest features or seeking expert advice,
+                                    we're here to help you find the perfect smartphone to enhance your digital
+                                    experience.
+                                    Join us in exploring the future of technology with confidence and ease.</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-6 mt-1">
+                                        <img src="/images/aboutus/aboutus1.jpg" alt=""
+                                            class="img-fluid mb-4" />
+                                    </div>
+                                    <div class="col-6 mt-5">
+                                        <img src="/images/aboutus/aboutus2.jpg" alt=""
+                                            class="img-fluid mb-4" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thêm JS của AOS từ node_modules -->
+    <script src="/node_modules/aos/dist/aos.js"></script>
+
+    <!-- Khởi tạo AOS -->
+    <script>
+        AOS.init({
+            offset: 120, 
+            delay: 0, 
+            duration: 700, 
+            easing: 'ease', 
+            once: false, 
+            mirror: false, 
+        });
+    </script>
+</body>
+
+</html>
